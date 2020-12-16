@@ -1,5 +1,5 @@
 \documentclass[12pt,a4paper,english,twoside]{book}
-\usepackage[german,main=english]{babel} % I added main= before english,else  compiler complaint 
+\usepackage[english,main=english]{babel} % I added main= before english,else  compiler complaint 
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc} % I changed from latin1 to utf8, else umlaute not displayed correctly
 \usepackage{amsfonts}
@@ -67,7 +67,7 @@
 % Define the student ID (Matrikelnummer)
 \studentid{15-702-103}
 % Define the title with optional subtitle
-\title{Tamper-resistant IoT based video surveillance using blockchain technology}
+\title{Tamper-resistant IoT based surveillance using blockchain technology}
 % Define the supervisors
 \supervisors{Eryk Schiller}
 % Define the submission date
@@ -88,6 +88,9 @@
 \input{abstract.tex}
 %\cleardoublepage
 \input{acknowledgments.tex}
+
+
+\renewcommand*\contentsname{Contents}
 
 \tableofcontents
 
