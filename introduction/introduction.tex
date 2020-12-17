@@ -33,46 +33,26 @@ The Face detection and recognition is done in the ESP EYE itself with the help o
  Docker\footnote{https://www.docker.com/}) and executed in the cloud environment. 
 
 \section{Description of Work}
-This work gives a general introduction to LoRa, LoRaWAN, and its applications, provides a detailed description of the LoRa physical layer, and gives an overview of existing software implementations of the LoRa PHY. 
-Furthermore, there are three main research contributions. 
-First, this thesis provides an architectural overview, specification of the system, and the implementation details of a C-RAN for LoRa.
-Second, the network related requirements are evaluated experimentally. 
-We develop a simple application protocol using an underlying LoRa network, which is not yet fully compatible with the LoRaWAN. 
-In the application protocol evaluation, a physical IoT device sends data packets towards the LoRa gateway.
-Some packets require an acknowledgment, therefore, a node has to wait a few seconds for an acknowledgement established by the gateway.
-Typically, when the sender requires an acknowledgement for a given packet, but no acknowledgment is received, the same packet will be repeated until the acknowledgement finally arrives.
-We investigate network utilization and effects of network and processing delays on the LoRa C-RAN performance.
-Third, as the LoRa PHY is closed source, there is no official documentation on how the LoRa PHY is implemented.
-The existing implementations are all reverse engineering attempts with a various degree of success. 
-They all focus on decoding LoRa signals transmitted by a regular hardware. 
-In the successful LoRa C-RAN, it is required to successfully decode signals and also encode downstream LoRa signals. 
-To achieve this, we extend an existing experimental uplink signal encoder with the ability to generate downlink signals in software.
+First of all this study provides an introduction to an IoT architecture using the ESP EYE device which runs a Convolutional Neural Networks (CNN) for face detection and recognition. In addition to that the architecture also shows how the ESP EYE is enabled to issue transactions to a blockchain. The main contributions of the thesis is not only the design but also the implementation of a use case with the above mentioned technologies. We have proposed an IoT surveillance system which is based on blockchain that jointly work together for authentication of people allowed to enter a building. By employing a face recognition IoT device named ESP eye we can do the verification and identification of allowed people to enter an institution without any physical interaction required by the end-user. The are three main milestones of this research. First, we will give a high level approach of the architecture while specifying the technologies and algorithms to be used and the reason behind choosing such technologies. Furthermore, we will introduce the technologies and their architecture and will evaluate against other similar technologies. After that we will evaluate the Convolutional Neural Networks for resource constraints devices which are applied for face detection and recognition. In addition we will also have a closer look at the Hyperledger Fabric to be used in this architecture. Hyperledger Fabric will be evaluated and we will compare and contrast with other blockchain technologies. 
+The main section of the thesis will be about the design and implementation details of the Blockchain-enabled Intelligent IoT surveillance system. The ESP EYE will run the Convolutional Neural Networks a Deep Learning algorithm for face detection and recognition. Besides, we will prove how the ESP EYE is able to issue transactions to Hyperledger Fabric. We are going to use Hyperledger Fabric to accommodate the need of IoT devices where in our case it will be sending images of recognized and non recognized individuals in the form of transactions. 
+
 
 \section{Thesis Outline}
-The rest of the thesis is structured in the following way.
-Chapter~\ref{chap:lora_and_lorawan} provides an introduction to LoRa and LoRaWAN.
-LoRa is also compared against other wireless technologies and an in-depth explanation of LoRa signals is given. 
-The modulation scheme and key factors such as spreading factor, coding rate, and packet structure are introduced.
+The rest of the thesis is enumerated in the following order: The second chapter will give a high level approach of the architecture, the hardware used and the design choices that match with the use case which will be compared against other technologies and protocols.
 
-In the following chapter, an overview of current software defined radio implementations for LoRa is given.
-The chapter discussed various implementations and their level of sophistication. 
-The GNU Radio framework is introduced as well.
+In Chapter ~\ref{chap:lora_and_lorawan} we will introduce and discuss the face detection and recognition algorithms using MTMN which refers to MTCNN (Multi-task Cascaded Convolutional Neural Networks ) and MN (Mobile Nets) for face detection and HFRM (Human Face Recognition Model ) for face recognition. The input for the face detection MTMN is an image captured by the ESP EYE camera and the output is the aligned face which will be as an input for FRMN for face recognition. 
 
-In chapter~\ref{chap:cran_in_cellular}, the C-RAN architecture for cellular networks is introduced to show the steps needed to move from a traditional setup towards a C-RAN architecture.
-Several benefits of C-RAN are discussed as well.
+With Hyperledger Fabric we are going add security with the decentralised system by storing all the images of detected individuals. Therefore in order to see the implementation details, its components and the advantages we have allocated Chapter 4 for this. 
 
-The next chapter focuses on the C-RAN for LoRa. 
-The architectural overview, system specification as well as the implementation details for all involved components are provided. 
-The C-RAN experiment is specified, in which network utilization, network delay, and processing delay are investigated.
-Finally, the chapter presents the experimental evaluation of the system.
-
-Chapter~\ref{chap:lora_tools} presents various tools that were developed during this thesis for encoding and signal visualization that may be helpful in future developments of LoRa signal processing in software.
-
-The second-last chapter discussed the future work in C-RAN for LoRa. It also lists some limitations of the current C-RAN architecture that can be improved and developed in the future.
-
-Finally, the last chapter summarizes and concludes this work.
+In the following chapter, we will dig deeper in the implementation by showing the details of all involved components, the interactions between the components and analyzing the whole architecture. 
 
 
+In the second-last chapter discusses the future work and improvements of the proposed architecture. Besides  it also lists some limitations that were either coming from the use case or from the technologies. 
 
+Finally, the last chapter encapsulates the whole work by writing the last remarks.
+
+In chapter~\ref{chap:cran_in_cellular}
+
+Chapter~\ref{chap:lora_tools} 
 
 
