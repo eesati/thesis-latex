@@ -17,7 +17,7 @@ Having had a closer look on the research that shed light on the synthesis of the
 Therefore the main goal of this project is to design and implement an IoT surveillance system with blockchain and AI to support access control with facial detection and recognition. Therefore the use case we are designing and implementing provides an efficient way of converging blockchain, AI and IoT with the most current state-of-the-art approaches. 
 We are entering an age where surveillance is becoming a norm and facial recognition technologies are hunting the streets. The roll out of facial recognition technologies is expected to become more prominent and an important step in improved security. On the other side, major data breaching has become common place and people worry about the type of personal information held by organizations. In the midst of the COVID-19 pandemic, attention have turned to facial recognition technology as a way to combat the spread of the virus.
 
-Before introducing our own architecture an interesting use case that resembles  our architecture is an implementation of a camera based sensor for monitoring room occupancy. Their architecture employees AI and IoT. This use case was designed and implemented by a group of students at FHNWS who employed a raspberry pi equipped with camera and lora gateway. The role of camera is to just take pictures and after that some machine learning algorithm will analyze the image and find the number of people in the room. Once done the data is then send to a LoraWan Server. To achieve that they have attached a LoraWan antenna to the RPI and eventually with a front end they can monitor the room. So face detection happens in the RPI, the algorithm counts the number of people in the image and sends it to the Lorawan Backend Server. From here we can conclude that the issue of centralisation is still open, data is being stored in a database, security issues are not tackled enough. Besides there is also the need for a RPI to be placed in a room as the camera is attached to it and that needs power to run.
+Before introducing our own architecture an interesting use case that resembles  our architecture is an implementation of a camera based sensor for monitoring room occupancy. 
 
 Hence to combat the many issues we have discussed and found in the above use case we will be using a low powered IoT device named ESP EYE which with the help of AI running on it will detect and recognize the individuals and grant or reject access. In the due time the ESP EYE will capture images of individuals and forwards them to the blockchain where it will be stored. The proposed architecture and implementation paves the way towards a strong architecture that fills the many gaps of the three domains. Therefore the main goal of this project is to design and implement an IoT-based surveillance system with blockchain and AI to support access control with facial detection and recognition. 
 The Face detection and recognition is done in the ESP EYE itself with the help of two machine learning algorithms. For the face detection we employee the MTCNN (Multi-task Cascaded Convolutional Neural Networks ). With the help of FRMN ( Human Face Recognition Model) the person will be recognized. 
@@ -31,10 +31,33 @@ The Face detection and recognition is done in the ESP EYE itself with the help o
 
 
  Docker\footnote{https://www.docker.com/}) and executed in the cloud environment. 
+ 
+ 
+
 
 \section{Description of Work}
 First of all this study provides an introduction to an IoT architecture using the ESP EYE device which runs a Convolutional Neural Networks (CNN) for face detection and recognition. In addition to that the architecture also shows how the ESP EYE is enabled to issue transactions to a blockchain. The main contributions of the thesis is not only the design but also the implementation of a use case with the above mentioned technologies. We have proposed an IoT surveillance system which is based on blockchain that jointly work together for authentication of people allowed to enter a building. By employing a face recognition IoT device named ESP eye we can do the verification and identification of allowed people to enter an institution without any physical interaction required by the end-user. The are three main milestones of this research. First, we will give a high level approach of the architecture while specifying the technologies and algorithms to be used and the reason behind choosing such technologies. Furthermore, we will introduce the technologies and their architecture and will evaluate against other similar technologies. After that we will evaluate the Convolutional Neural Networks for resource constraints devices which are applied for face detection and recognition. In addition we will also have a closer look at the Hyperledger Fabric to be used in this architecture. Hyperledger Fabric will be evaluated and we will compare and contrast with other blockchain technologies. 
 The main section of the thesis will be about the design and implementation details of the Blockchain-enabled Intelligent IoT surveillance system. The ESP EYE will run the Convolutional Neural Networks a Deep Learning algorithm for face detection and recognition. Besides, we will prove how the ESP EYE is able to issue transactions to Hyperledger Fabric. We are going to use Hyperledger Fabric to accommodate the need of IoT devices where in our case it will be sending images of recognized and non recognized individuals in the form of transactions. 
+
+
+
+\section{High Level Overview}
+
+We know that AI and Blockchain are the leading innovations we witness today. Being the most disrupting technologies, we often talk about their advantages but yet we do not see a real use case. Hence in this section we will provide a high level description of the proposed surveillance system using facial recognition for access control. The system employees a real time face detection and recognition of authorized individuals to grant access to an institution. This means that access is granted and the door opens automatically for him or her without the need to touch anything. Every time an individual needs access a picture of him or her is taken and is then stored in the blockchain. Access is revoked when an individual is not registered in the system but yet a picture of the individual is taken and stored in the blockchain. Once a stranger is detected continuously a warning is raised to inform the administrators for the issue. Simultaneously, the number of people entering and leaving an institution or a room can be tracked. Tracking the number of people entering or leaving the room can be very beneficial in many situations, such as the number of students taking an exam or their presence in a classroom. The use case diagram can be seen in the Figure~\ref{fig:use_case}. 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/use_case.jpg}
+    \caption{High Level Overview}
+    \label{fig:use_case}
+\end{figure}
+
+
+The assumptions is that the authorized users or individuals are first registered with the system. If an individual is not registered with the system then access is revoked. The process involves an individual approaching an entry point of an institution or a room, where the ESP eye device will detect and recognize the person and grant or reject access. In the due time the ESP WHO platform captures images of individuals and forwards them to the blockchain where it will be stored. Also the cases are considered when a person appears for a continued presence in front of the device. The system shall warn the administrators in such cases. In case of disobedience the system may raise an alarm. 
+
+
+
+
 
 
 \section{Thesis Outline}
