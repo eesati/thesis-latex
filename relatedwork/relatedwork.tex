@@ -199,9 +199,152 @@ Their architecture employees AI and IoT. This use case was designed and implemen
 With out proposed architecture we are not only going automate the IoT-based surveillance system but provide a robust solution that will take care of the leaks that AI and blockchain will be able to neutralize. 
 
 
-\chapter{Face Detection and Recognition}
+\chapter{Face Detection and Recognition in IoT devices}
 \label{chap:face_detection}
+\section{Background of real time face recognition in low powered IoT devices}
+Monitoring and tracking people and their activities with the current approaches of the surveillance system normally generate enormous amount of data coming from Internet of Things devices. This leads to a number of issues that need to be treated well, data migration from camera over a limited bandwidth for face detection and recognition leads to high latency  and the camera positions need to be placed near the electrical plug as they require a lot of power. Therefore this approach leads to generating a lot of data while transferring it to a different source for face detection and recognition. Besides many public places use surveillance camera for video capture based on motion detection, which means that once someone approaches near the camera it will start recording and throughout the day you can imagine how much volume of data can be generated. 
+In this chapter we will guide you through the existing algorithms for face detection and recognition and then we will see the algorithms that are implemented for the resource constraint devices or IoT. Therefore we will also discuss the reason behind choosing to deploy the face detection and recognition algorithm in the ESP EYE itself. In addition the Multi-task Cascaded Convolutional Networks (MTCNN) and  Human Face Recognition Model (FRMN) for face detection and recognition will be described in detail. 
+
+
+\subsection{The generic framework for face detection and recognition}
+
+
+Face detection is normally the first step towards face recognition or verification as it can be seen in  Figure~\ref{fig:framework}. Basically the framework follows a two step process: face image detecting and face recognizer. In the first process an image is taken from the camera which searches for human faces in that image then the algorithm localizes the face from the background image. This process happens continuously which means if there is no face detected the takes the next image and does the same. The image when no face is detected is deleted from memory. The next process assumes the image is taken and a face has been detected then the face recognition will start. In this phase another algorithm will take place in order to determine who are the persons in that image. During both processes, algorithms extract features or a pattern which is the key step of the algorithm. Feature extraction is the process is essential for localizing facial components such as mouth, nose, eye and others. 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/framework.jpg}
+    \caption{ Face detection and recognition.}
+    \label{fig:framework}
+\end{figure}
+
+
+\subsection{Existing  algorithms  for  face detection and recognition}
+
+There are a number of algorithms that have been developed and now used to tackle the face detection and recognition issues. We would like to mention a number of successful algorithms which are widely used and they are: 
+
+\begin{itemize}
+    \item \textbf{Principle Component Analysis (PCA).} It is a statistical approach and one of the simplest in face recognition systems. In this approach images with detected faces are transformed into eigenfaces. Eigenface is a method that determines the variance of faces from a collection of images. The main idea behind is to linearly project images onto a lower dimensional images. 
+    
+    
+    \item \textbf{Linear Discriminant Analysis (LDA).}
+   It is a method used in pattern recognition and machine learning by finding a linear combination of features. It used for dimensionality reduction and performs very well in face recognition. It finds a projection transformation by maximizing the between-class distance and minimizing the within-class distance. 
+   
+   
+   
+    \item \textbf{Skin colour based algorithm.}
+    As the name says, it uses skin color as a feature for face detection and it is fast, self adaptive algorithm. From the input image it uses color space for the skin region. A bounding box is drawn to extract the face from the image.
+    
+    
+    \item \textbf{Wavelet based algorithm}
+    In this method the image is cut up into a subset of frequency components and to each component is applied a mathematical function. One of the widely known algorithm is the Gabor wavelet.
+    \item \textbf{Artificial  neural  networks  based  algorithm}
+    Typically face recognition is achieved with the help of deep learning more specifically the Convolutional Neural Network. Through a multy-layered network which performs a specific task using classification.
+\end{itemize}
+
+
+\subsection{Hardware requirements for running real time face recognition}
+
+It is important to mention that a typical computer or a laptop possess an AMD processor, while a raspberry pi and smart phones and some other devices like watches are equipped with a ARM processor. Obviously ARM architecture offers lower performance compare to AMD, but there is a reason behind, the ARM processors consume less power than AMD processors. Performing real time recognition on both AMD and ARM is not an issue, both can handle them. However both processors need power either plugged or if on battery they can last max one day long. In contrast the low powered IoT devices can run for years with a typical voltage of 3.6 V. Therefore to our knowledge so far it is not possible to perform real time recognition with a processor other then the above mentioned, AMD and ARM. 
+
+ESP EYE is the first device to perform real time face recognition. However, this does not mean that the face detection and recognition algorithm have been used one to one. ESP EYE is one of its kind that comes with ESP WHO platform which supports both face detection and face recognition. The ESP EYE is equipped with Tensilica LX6 dual core processor. To our knowledge this is the only device that can perform real time face recognition in a microprocessor that lies out of the two classes AMD and ARM processors. 
+
+\section{Face detection with deep learning using Multi-Technology Network Management (MTNN)}
+
+MTMN refers to both MTCNN (Multi-task Cascaded Convolutional Networks) and MobileNets. There are a number of deep learning methods that have been implemented and paved the way for face detection but MTCNN is a framework which integrates both face detection and alignment. With the help of MobileNets it builds light weight deep neural networks which uses depth-wise separable convolutions for face detection.
+
+
+\subsection{MTCNN a three layer CNN model}
+
+MTCNN is one of the state of the art approaches which is described and published in the paper "Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks" ref(mtcnn) in 2016. MTCNN is popular because it has achieved 95 percent accuracy on a range of banchmark datasets. MTCNN is a novel approach because it performs a lightweight Convolutional Neural Network based framework which actually performs simultaneously face detection and alignment whereas in other CNN-based frameworks face detection and alignment are two distinct processes.   
+Due to its lightweight CNN architecture it can perform in real time which is possible to run it in an ESP32 chip. 
+
+The process consists of three stages of Convolutional Neural Networks that are able to detect faces and landmark location such as eyes, nose, and mouth : 
+
+\begin{itemize}
+    \item \textbf{P-net} 
+    \item \textbf{R-net} 
+    \item \textbf{O-net} 
+\end{itemize}
+
+
+The Figure~\ref{fig:mtcnn} adapted from the paper depicts a summary of the three layers with the output of each layers on the right side. The three mentioned models perform independent of each other, the output of each is used as an input of another. 
+First of all once the image is captured it will be scaled into multiple different sizes based on different scaling ratios which forms a collection of images called Image Pyramid similarly as in Figure~\ref{fig:pyramid}. This will allow the model to learn different image scales effectively. This type of image processing is used extensively because it makes it easier to detect faces no matter how far or close they stand in the image.
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/mtcnn.png}
+    \caption{ Pipeline of MTCNN that includes three-stage multi-task deep convolutional networks.}
+    \label{fig:mtcnn}
+\end{figure}
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/pyramid.png}
+    \caption{ Image rescaled in a form of a pyramid}
+    \label{fig:pyramid}
+\end{figure}
+
+\subsubsection{Proposal Network or P-net}
+
+The first stage of Proposal network (P-Net) as depicted in Figure~\ref{fig:3stages} is a full convolutional neural network which extracts face candidate regions from images at various scales and bounding box regression vectors. Bounding-box regression is a technique for refining or localizing boxes in objects. In other words it is a rectangle which is drawn over the image to emphasize the face. For each of the scaled image that reside in the image pyramid it runs a 12x12 kernel which starts in the top left corner or at these coordinates (0,0) to (12,12). This portion of the image 12x12x3 will be the input for P-Net as it can be seen in Figure~\ref{fig:3stages}. To this image then is run another kernel of size 3x3 and then it produces feature map or smaller images depending on the stride. For example in the first filtering it produces feature maps of size 5x5. The stride is the number of jumps or pixels that the kernel moves to apply a filter. In the order to deliver a 5x5x10 from 12x12x3 with a kernel 3x3 the stride is 2. Therefore stride plays a role in time complexity of the algorithm, the smaller the stride the higher the time complexity. From this 12x12 portion of a scaled image from pyramid the P-net will output the coordinated of a bounding box of there is a face. Before releasing the last output bounding box coordinates a number of similar boxes are filtered out with lower confidence and only the ones with higher confidence are kept. The bounding boxes left may still overlap as in Figure~\ref{fig:non-max}, therefore we need the one that perfectly covers the face. To do that the non-max suppression technique is applied which reduces the number of boxes by taking the best fit and not the one the network is more confident in. 
 
 
 
 
+The aim of the this network is to check whether there is a face in the input and output the face frame or box with the four coordinates. In the face classification the network outputs the probability of being a face and not being a face and both values add up to 1. The bounding box holds the exact position of the box with coordinates. 
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/3stages.png}
+    \caption{ MTCCN: P-Net, R-Net and O-Net structure}
+    \label{fig:3stages}
+\end{figure}
+
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/non-max.png}
+    \caption{ Non-Maximum Suppression}
+    \label{fig:non-max}
+\end{figure}
+\subsubsection{Refine Network or R-net}
+
+The structure of R-net can be seen in the Figure~\ref{fig:3stages} which looks pretty much the same as R-net. R-net is a rough prediction of faces therefore there are a number of false positives so the aim of R-net is refinement of the bounding boxes and reduce the number of false positives.
+The input of this stage is the bounding box generated by P-net which can be of different sizes. From the Figure~\ref{fig:3stages} we can see that the input size is of size 24x24x3. So regardless of the size of the bounding box it still need to be scaled to the expected input size before sending to R-Net. Therefore the bounding boxes will be scaled to 24 x 24 pixels and now we can feed them to R-Net. Once again the same as in P-net happens, get rid of boxes with low confidence and apply the NMS on every survived box. The output is the same as of that of P-net which also consists of the tree parts: probability of being a face or not, square frames and the position of the landmarks. This stage can help to recover the weaknesses of P-net and improve accuracy by reducing the number of false positives. 
+
+
+\subsubsection{Output Network or O-Net}
+
+In the Output Network almost the same happens as in R-Net with some changes in middle layer where additional channels are added which means accuracy is also increasing. The input, feature maps are getting higher and higher in terms of pixels. The accuracy rate is expected to be higher which is proportional to the increased time complexity. In this case the output of R-Net will be the input but scaled to 48x48x3. 
+Now we can already see the reason behind using three neural networks and not one. Since the final decision is received from O-Net we can directly use it and avoid the previous two networks. But the speed will be very slow since O-Net will have to do a lot of operation on all candidate windows which can be very high. With the help of P-net and R-Net a lot of non relevant windows will be filtered out from the start. From P-Net to R-Net a lot filtering happens, so the advantage here is to perform fine grained face detection only on highly probable candidate windows. To make the story short here is a summary of the whole face detection process: 
+ 
+ P-Net:
+\begin{enumerate}
+  \vspace{-0.7cm} \item Image is captured by ESP EYE.
+  \vspace{-0.3cm}\item Create image pyramid with multiple scaled copies of the image.
+  \vspace{-0.3cm} \item Pass each image of pyramid to P-net.
+  \vspace{-0.3cm} \item Candidate windows as output.
+  \vspace{-0.3cm} \item Filter out bounding boxes with low confidence.
+  \vspace{-0.3cm} \item Adjust the current 12 x 12 kernel coordinates to “un-scaled image” from pyramid.
+  \vspace{-0.3cm} \item Non-Maximum Suppression for all kernels.
+   \vspace{-0.3cm} \item Adjust the bounding box coordinates to “un-scaled image”.
+   \vspace{-0.3cm} \item Candidate windows as output.
+\end{enumerate}
+
+ R-Net:
+\begin{enumerate}
+  \vspace{-0.7cm} \item Pass the bounding boxes
+   \vspace{-0.3cm} \item Pass each image of pyramid to P-net.
+  \vspace{-0.3cm} \item Candidate windows as output.
+  \vspace{-0.3cm} \item Repeat step 5 to 9 of P-net.
+\end{enumerate}
+
+
+ O-Net: Repeat the same steps as in R-Net
+
+\subsection{MobileNetsv2 for lightweight CNN}
+
+MobileNet is a CNN architecture developed by researchers at Google which typically is used for in Image Classification and Mobile vision. The model is proven to build light-weight deep neural networks which uses less computational power to run. This architecture allows to run face detection and recognition for IoT devices, Mobile devices and computers with low computational efficiency without compromising the accuracy of the results. MobilNet version 2 it the more recent version which comes with a research paper published in late 2018. It is a refinement of the MobileNet version 1 which make it even more powerful. In order to understand why this model is being used and at which step in face detection is used we would like to first give an overview on how convolutional neural network works. 
