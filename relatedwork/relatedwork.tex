@@ -433,3 +433,58 @@ Typically during face verification the models preprocess the images by extractin
 \end{figure}
 
 The MobileNetv2 is used similarly as in face detection up to the last feature map with size 7x7. At this step a Global Depthwise Convolution takes places, which uses a kernel of the same size as the input size. The output of this convolution is a 1x1xC while C being the number of channels. The reason behind using this approach in the last convolutional layer is that it reduces the last feature map to a vector. Which is then used as an identity for a person and the model uses it for facial recognition by computing the euclidean distance of this vector and other vectors. 
+
+
+
+\chapter{Hyperledger Fabric for Storing Images}
+
+
+
+In the previous chapters we have discussed how blockchain with its underlying immutable ledger can facilitate IoT and its reliance on a centralized cloud. A blockchain-based and decentralized approach could overcome the many issues associated with the centralized approach. The video surveillance monitoring system that we propose captures images once it detects a person and grants or rejects access. In order to keep evidence we store images of detected people in the Hyperledger Fabric. Considering the use case we need an additional layer of security on who is allowed to participate in the blockchain and who is allowed to see what is in the blockchain. Therefore Hyperledger Fabric solves both concerns which is in the form of permissioned and private blockchain. In this chapter we are going to show the Hyperledger Fabric architecture with its components. 
+
+
+\section{Hyperledger Fabric Introduction}
+Public blockchain as an immutable ledger allows for storing data in the form of transactions held by distributed network of untrusted peers and each peer can join or leave the network without any restrictions. In order to add information or create transactions normally peers ought to execute a consensus protocol which typically is a Proof of Work protocol in order to validate transactions. During this process  the peers compete for a mathematical task to be solved which require a lot of computational power, this happens everytime a new block is created. Bitcoin and Ethereum fall in this category which are considered to be public permissionless blockchains. This type of blockchain is great when transparency is required and data privacy is not a concern. 
+In addition due to the consensus algorithm in public blockchains the number of transactions mined is relatively low, for example Bitcoin has an average of 7 transactions per second which makes it quite slow and energy intensive. Considering the above conditions public blockchain does not offer the possibility for a wide range of use cases. Therefore many companies often chose private permissioned blockchain over the public blockchain because they: 
+
+\begin{itemize}
+    \item concern about data privacy and confidentiality
+    \item need a customizable blockchain to implement their specific use cases
+    \item provide more control over the resources
+    \item do not involve cryptocurrencies and provide better throughput  
+\end{itemize}
+
+Having considered our use case of video surveillance access control with face detection and recognition we found Hyperledger Fabric more appropriate than any other private permissioned blockchain. 
+Hyperledger Fabric is an open source permissioned blockchain developed by Linux Foundation which has received contributions from IBM and some other companies. With its modular and configurable architecture it has become a standard for enterprise blockchain. 
+
+
+\section{Hyperledger Fabric Architecture}
+Hyperledger Fabric differs from other blockchains as it provides solutions to the problems in the business world. So instead of having unknown participants, it has a membership service provider that allows the ones that are permitted. Hyperledger Fabric offers a pluggable consensus mechanism instead of using Proof of Work while giving a lot of freedom to chose the algorithm by ourselves. In other words the platform is pretty flexible you will get to know more once we get to each component. Figure~\ref{fig:fabric_arch} depicts Hyperledger Fabric architecture with its key features and components which are:
+\begin{itemize}
+    \item Roles in Hyperledger Fabric
+     \item Membership Service Provider
+     \item Hyperledger Fabric Certificate Authority
+    \item Consensus Mechanism
+    \item Chaincode / Smart Contracts 
+    \item Channels
+    \item Transaction Flow
+    \item State Database
+\end{itemize}
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/HyperledgerArchitecture.jpg}
+    \caption{Fabric Architecture}
+    \label{fig:fabric_arch}
+\end{figure}
+
+\subsection{Roles within Hyperledger Fabric Network}
+There are a number of roles in Hyperledger Fabric but first of all the most important members are the organisations who operate the network and together form a consortium.
+Each of the nodes that participate in the Fabric blockchain holds an identity issued by the Membership Service Provided (MSP) with each being responsible for one these roles:
+\begin{enumerate}
+  \item Clients. They are applications or devices that issue transactions in the network on behalf of the user. Every client is identified by the MSP and they hold certificates issued from the Certificate Authority. 
+  \item 
+\end{enumerate}
+
+
+
+
