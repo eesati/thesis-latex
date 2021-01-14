@@ -209,7 +209,7 @@ In this chapter we will guide you through the existing algorithms for face detec
 \subsection{The generic framework for face detection and recognition}
 
 
-Face detection is normally the first step towards face recognition or verification as it can be seen in  Figure~\ref{fig:framework}. Basically the framework follows a two step process: face image detecting and face recognizer. In the first process an image is taken from the camera which searches for human faces in that image then the algorithm localizes the face from the background image. This process happens continuously which means if there is no face detected the takes the next image and does the same. The image when no face is detected is deleted from memory. The next process assumes the image is taken and a face has been detected then the face recognition will start. In this phase another algorithm will take place in order to determine who are the persons in that image. During both processes, algorithms extract features or a pattern which is the key step of the algorithm. Feature extraction is the process is essential for localizing facial components such as mouth, nose, eye and others. 
+Face detection is normally the first step towards face recognition or verification as it can be seen in  Figure~\ref{fig:framework}. Basically the framework follows a two step process: face image detecting and face recognizer. In the first process an image is taken from the camera which searches for human faces in that image then the algorithm localizes the face from the background image. This process happens continuously which means if there is no face detected then it captures the next image and does the same. When no face is detected the image is deleted from memory. The next process assumes the image is taken and a face has been detected then the face recognition will start. In this phase another algorithm will take place in order to determine who are the persons in that image. During both processes, algorithms extract features or a pattern which is the key step of the algorithm. Feature extraction is the process is essential for localizing facial components such as mouth, nose, eye and others. 
 
 \begin{figure}[!htb]
     \centering
@@ -288,7 +288,7 @@ First of all once the image is captured it will be scaled into multiple differen
 
 \subsubsection{Proposal Network or P-net}
 
-The first stage of Proposal network (P-Net) as depicted in Figure~\ref{fig:3stages} is a full convolutional neural network which extracts face candidate regions from images at various scales and bounding box regression vectors. Bounding-box regression is a technique for refining or localizing boxes in objects. In other words it is a rectangle which is drawn over the image to emphasize the face. For each of the scaled image that reside in the image pyramid it runs a 12x12 kernel which starts in the top left corner or at these coordinates (0,0) to (12,12). This portion of the image 12x12x3 will be the input for P-Net as it can be seen in Figure~\ref{fig:3stages}. To this image then is run another kernel of size 3x3 and then it produces feature map or smaller images depending on the stride. For example in the first filtering it produces feature maps of size 5x5. The stride is the number of jumps or pixels that the kernel moves to apply a filter. In the order to deliver a 5x5x10 from 12x12x3 with a kernel 3x3 the stride is 2. Therefore stride plays a role in time complexity of the algorithm, the smaller the stride the higher the time complexity. From this 12x12 portion of a scaled image from pyramid the P-net will output the coordinated of a bounding box of there is a face. Before releasing the last output bounding box coordinates a number of similar boxes are filtered out with lower confidence and only the ones with higher confidence are kept. The bounding boxes left may still overlap as in Figure~\ref{fig:non-max}, therefore we need the one that perfectly covers the face. To do that the non-max suppression technique is applied which reduces the number of boxes by taking the best fit and not the one the network is more confident in. 
+The first stage of Proposal network (P-Net) as depicted in Figure~\ref{fig:3stages} is a full convolutional neural network which extracts face candidate regions from images at various scales and bounding box regression vectors. Bounding-box regression is a technique for refining or localizing boxes in objects. In other words it is a rectangle which is drawn over the image to emphasize the face. For each of the scaled image that reside in the image pyramid it runs a 12x12 kernel which starts in the top left corner or at these coordinates (0,0) to (12,12). This portion of the image 12x12x3 will be the input for P-Net as it can be seen in Figure~\ref{fig:3stages}. To this image then is run another kernel of size 3x3 and then it produces feature map or smaller images depending on the stride. For example in the first filtering it produces feature maps of size 5x5. The stride is the number of jumps or pixels that the kernel moves to apply a filter. In order to deliver a 5x5x10 from 12x12x3 with a kernel 3x3 the stride is 2. Therefore stride plays a role in time complexity of the algorithm, the lower the stride the higher the time complexity. From this 12x12 portion of a scaled image from pyramid the P-net will output the coordinates of a bounding box if there is a face. Before releasing the last output bounding box coordinates a number of similar boxes are filtered out with lower confidence and only the ones with higher confidence are kept. The bounding boxes left may still overlap as in Figure~\ref{fig:non-max}, therefore we need the one that perfectly covers the face. To do that the non-max suppression technique is applied which reduces the number of boxes by taking the best fit and not the one the network is more confident in. 
 
 
 
@@ -459,16 +459,15 @@ Hyperledger Fabric is an open source permissioned blockchain developed by Linux 
 
 
 \section{Hyperledger Fabric Architecture}
-Hyperledger Fabric differs from other blockchains as it provides solutions to the problems in the business world. So instead of having unknown participants, it has a membership service provider that allows the ones that are permitted. Hyperledger Fabric offers a pluggable consensus mechanism instead of using Proof of Work while giving a lot of freedom to chose the algorithm by ourselves. In other words the platform is pretty flexible you will get to know more once we get to each component. Figure~\ref{fig:fabric_arch} depicts Hyperledger Fabric architecture with its key features and components which are:
+Hyperledger Fabric differs from other blockchains as it provides solutions to the problems in the business world. So instead of having unknown participants, it has a membership service provider that allows the ones that are permitted. Hyperledger Fabric offers a pluggable consensus mechanism instead of using Proof of Work while giving a lot of freedom to chose the algorithm by ourselves. In other words the platform is pretty flexible you will get to know more once we get to each component. Figure~\ref{fig:fabric_arch} depicts Hyperledger Fabric architecture with its key features and components which we define:
 \begin{itemize}
     \item Roles in Hyperledger Fabric
      \item Membership Service Provider
-     \item Hyperledger Fabric Certificate Authority
+     \item Certificate Authority
     \item Consensus Mechanism
     \item Chaincode / Smart Contracts 
     \item Channels
-    \item Transaction Flow
-    \item State Database
+    \item Ledger and State Database
 \end{itemize}
 \begin{figure}[!htb]
     \centering
@@ -478,13 +477,112 @@ Hyperledger Fabric differs from other blockchains as it provides solutions to th
 \end{figure}
 
 \subsection{Roles within Hyperledger Fabric Network}
-There are a number of roles in Hyperledger Fabric but first of all the most important members are the organisations who operate the network and together form a consortium.
+There are a number of roles in Hyperledger Fabric but first of all the most important are the members of the organisations who operate the network and together form a consortium.
 Each of the nodes that participate in the Fabric blockchain holds an identity issued by the Membership Service Provided (MSP) with each being responsible for one these roles:
 \begin{enumerate}
-  \item Clients. They are applications or devices that issue transactions in the network on behalf of the user. Every client is identified by the MSP and they hold certificates issued from the Certificate Authority. 
-  \item 
+  \item Clients or Participants. They are applications or devices that issue transactions in the network on behalf of the user. Every client is identified by the MSP and they hold certificates issued from the Certificate Authority which allows them to sign transactions.
+  \item Peers. They are the fundamental element of the network because they operate the blockchain and execute transactions to the append only data structure. The blockchain ledger and smart contracts encapsulate the shared process of inserting information in the network. 
+  
+  \item Ordering Service. Ordering receives a transaction from the endorser it checks if the client is authorized by the MSP. If that's the case it orders the transactions in a block and delivers the blocks in atomic or total order broadcast. 
+  
+  \item Administrators. They stand one level above a member. They are responsible for adding or removing members from the blockchain. 
+  
+\end{enumerate}
+
+\subsubsection{Types of peers: }
+
+
+\begin{enumerate}
+\item Endorsing Peer. In Hyperledger Fabric it is not necessary that all peers execute the transactions but only a subset of them which are named as endorsing peers. Every chaincode holds an endorsement policy, which first of all defines which peers are allowed to execute the chaincode. The endorsement policy holds from the moment the chaincode is installed on the endorsing peers. Every chaincode can specify its own endorsement policy. Each and every peer that holds that particular chaincode will have to do the endorsement and each organisation must have at least one endorser peer. The request for adding transactions comes from the client and the endorser ought to assure the client is valid, if the client has a true Certificate Authority and digital signature. 
+
+
+\item Ordering Peer. 
+After an order node receives a transaction from the client which is also signed by the endorser it checks if the client is authorized by the MSP. If that's the case it orders the transactions in a block and delivers the block in atomic or total order broadcast to all the peers. The task basically is to achieve consensus on the order of transactions and deliver the decision to the committer peer. 
+\item Committer Peer. The committer assumes the transaction has been validated by the order and its job is to transmit the valid transactions to other peers for inclusion in the ledger. 
 \end{enumerate}
 
 
 
+\subsection{Membership Service Provider}
+Unlike public blockchain in private blockchain participants in the network are identified. Hence in Hyperledger Fabric 
+MSP manages identities, each  and every entity has to obtain an enrollment certificate from a Certificate Authority which is part of MSP. Since Fabric is permissioned, every interaction or messages that occur between the nodes are authenticated with digital signature. MSP is responsible for for issuing and managing credentials in order to authenticate and authorise the every node in the network. Typically there is one MSP per organisation but it is still possible to have one MSP to serve multiple organisations. In addition MSP also defines roles, access rights and the rules for each type of peer. MSP makes use of Certificate Authority which makes it easier to verify and revoke certificates when need. In other words MSP allows to find out which identity is to be trusted and which ones to be rejected. 
 
+\subsection{Certificate Authority}
+
+Hyperledger Fabric uses Public Key Infrastructure (PKI) for the digital identity. Each digital identity is provided with X. 509 digital certificate in order to verify that a public key belongs to the entity who owns it. The role of public private key in Hyperledger Fabric is mainly to sign transactions. When an application user initiates a transaction it first signs the transactions with his private key issued by his organisation and it also includes the public key and the signature. 
+
+By default Hyperledger Fabric provides a Fabric-ca which is a certificate authority for handling digital identities reflected in Figure~\ref{fig:fabric_arch}. Fabric-ca is in charge of registering identities, issuing of Enrollment Certificates and renewing or revoking certificates. However Hyperledger Fabric is not bound to Fabric-ca for managing digital identities but instead it allows for external CA also. This is another proof which shows the modular nature of Hyperledger Fabric. 
+
+\subsection{Consensus Mechanism}
+Most of the public blockchains like Ethereum are permission-less which means the peers do not trust each other. In order to ensure trust on what gets registered in the ledger there is a need for consensus algorithm such as Proof of Work. However with permissioned blockchains the entities are all known and the consensus takes a different approach.  Eventhough the participants is known but the still they are not fully trusted. 
+
+Every client that submits transactions belongs to an organisation which means that the client represent the organisation itself. Therefore in order to ensure the organisation is not doing any mischief there is a need for an agreement or consensus.   
+In Hyperledger Fabric there is a need to compromise on the ordering of transactions in the block and most importantly validating those transactions in the block that will eventually be inserted in the ledger. Consensus in Fabric is broad and covers the entire transaction flow, starting from proposing a transaction till committing it to the ledger. But we need to keep in mind that transactions are executed before the ordering. For executing transactions there is no need for a consensus algorithm its the orderer peer that does it by holding to the rules in the endorsement policies applied. Consensus in Fabric ensures the correctness of of all transactions in the proposed block and agreement on the ordering of transactions. This brings to the properties which are needed to guarantee agreement between nodes: safety and liveliness. "Safety" means when a node receives the sequence of transactions to be inserted in the ledger, the same sequence and state occurs on all other nodes. "Liveliness" means even though some of the nodes may be faulty, the non faulty nodes will still be able to receive the committed transactions. 
+
+The ordering of transactions is assigned to a pluggable algorithm for consensus which is loosely coupled to the peers that execute and maintain the ledger. This allows the organisations running the blockchain to chose the consensus algorithm that best fits their need and use case without limiting their own creativity. The component where the consensus is applied is the ordering service. 
+
+\subsubsection{Consensus Algorithms Used in Hyperledger Fabric}
+
+With its pluggable architecture Fabric allows developers to configure the development with the consensus algorithm which best suits the organisations needs. Currently the supported options are: 
+
+\begin{itemize}
+  \item \textbf{Solo.}  As the name says solo, the ordering service is performed by only one single peer. Clearly this is not the best option and it is neither decentralized  nor fault tolerant. But since solo is used only for development purposes there is the advantage of letting the developers focus on other matters while developing the chaincode and application and it is not used in production. 
+ \item \textbf{Kafka.} The Apache Kafka provides a crash fault tolerant (CFT) but it is not Byzantine Fault Tolerant (BFT). Apache Kafka is an event streaming platform based on publisher-subscribe messaging which comes with high throughput and low latency. It follows a leader-follower model which means there will be a leader peer and follower peer. The leader will order transactions and propagated that to all other peers and if the leader goes down then re-election takes place for choosing the leader. 
+ \item \textbf{Raft.} Raft is one of the latest mechanism recommend from Hyperledger Fabric which is there to improve the Kafka mechanism towards a (BFT) ordering service. Raft and Kafka provide the identical approach to the ordering service component. Both of them follow the leader and follower and design and are crash fault tolerant. However Raft overtakes Kafka by a number of major advantages worth considering. First of all Raft is much easier to setup considering that deploying Kafka with additional baggage such as Zookeeper. Secondly, Kafka is not scalable and it runs in a tight group of peers. There can be different organisations running Kafka but yet the nodes running Kafka will all go to the same cluster which is managed by a single organisation. With Raft it is possible to spread the nodes in different data centers, so if one data center becomes unavailable the other one is there to recover and continue the operation.
+
+ 
+ \item \textbf{Simplified Byzantine Fault Tolerance (SBFT).} This is a new approach which is planned to be implemented by Hyperledger Fabric. SBFT is both crash fault tolerant and byzantine fault tolerant. With this approach the nodes can reach agreement eventhough there are faulty or malicious nodes. 
+\end{itemize}
+
+\subsection{Chaincode or Smart contracts}
+Since Hyperledger Fabric does not support cryprtocurrencies, it however comes with the notion of "asset" which typically is a tangible good (real estate or hardware). To simplify the trade between different participants and holders of the assets there is a need for smart contract or chaincode which holds the governance rules. Literally chaincode and smart contract refer to the same thing but technically is more than a smart contract. 
+
+Fabric uses the term chaincode to refer to a docker container which holds a group of related smart contracts. The difference is mainly in the way it is deployed in the network, smart contract manages transactions, however chaincode governs one or multiple contracts which is packaged as a single component. The deployment of chaincode takes a different approach, first it has to be packaged, then installed and only after that it can be used. Before it is installed every chaincode can specifiy the endorsement policy which defines the conditions necessary for a valid transactions. In addition the chaincode specifies the set of  endorsing peers the chaincode will be installed. This allows multiple organisations to agree on the chaincode operation before it can be used. 
+
+
+During chaincode installation the endosring peers that are chosen to run the chaincode need to approve the chaincode otherwise the chaincode will not be installed. After the chaincode is installed each of the endorsing peers must endorse a transaction before it is commited. 
+
+
+
+Since agreement happens upfront and are explicit there is no need for a deterministic chaincode. This makes Fabric exceptional because then it allows to write chaincode in a deterministic programming language. This is why Fabric allows the chaincode to be developed in Go, Java and Javascript. 
+
+
+
+
+\subsection{Channels}
+
+Channels allow the creation of sub networks within the same Fabric network. This is a huge advantage for organisations that are competitors and want to make their transactions invisible to their competitors. Channels allows the participating organisations to create and maintain their own private ledger. The ledger is not visible to any other organisations except the members participating in that channel. 
+Each organisation would normally want to have their own peers in the blockchain. Suppose there are three organisations A, B and C. All of them are connected with one single Channel and maintain one single ledger. If now A want to buy a specific product from B, A do not want to share the details with C. Therefore A and B would want a new channel having their own peers. Since C is not part of channel it will not be able to see their ledger. Each channels can have one ledger only. 
+Technically a channel is a subnet between two or more members.  
+
+An endorser peer may participate in more than one channel therefore it allows them to hold two ledgers or more at the same time. 
+
+A few features that hold: 
+\begin{itemize}
+  \item Every channel may have only one ledger.
+  \item A channel may have one or multiply chincodes.
+  \item Every chaincode has its own endorser peers and endorsement policies.
+  \item A chaincode must be installed on peers that are members of a channel where the chaincode will be deployed. 
+  \item One channel may have more than one chaincodes.
+  \end{itemize}
+
+
+\subsection{Ledger and State Database}
+
+Like any other blockchain platforms also in Hyperledger Fabric the ledger keeps track of all important information by storing the history of all transactions. While the state of the assets may change the history behind it is immutable. In Hyperledger Fabric the ledger contains two distinct parts, the world state and the blockchain itself. 
+The ledger is kept by all peers except a subset of orderers. 
+Figure~\ref{fig:ledgerdiagram} shows the structure of blockchain with the blocks and the transactions in each block. Each blockchain is structured as back-linked list of blocks which include a hash of the prior block. More specifically the Block header holds the hash of the previous block as well as the hash of its own transactions. There are additional information stored in the block which can be seen in  Figure~\ref{fig:ledgerdiagram}. The transactions are stored in Block Data and the number of transactions is not necessarily the same. Each orderer assembles the transactions coming from the consensus algorithm. The conditions for creating and closing the block is based either on the maximum number of transactions allowed per block or when a timeout period has elapsed which is counted from the time the first transaction has been endorsed. 
+
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/ledgediagram.png}
+    \caption{The structure of the ledger.}
+    \label{fig:ledgerdiagram}
+\end{figure}
+
+Blockchain data or asset in Hyperledger Fabric is represented as a collection of key value pairs. Assets can be in JSON form or binary. The state changes are recorded as a result of transaction execution in a set of key-value writes. 
+
+
+In addition to the blockchain data there is a world state which represents the current state of the ledger. Word state similarly as the ledger holds a key value pair in a database which can be either CouchDB or LevelDB. With the world state the program can query the current most updated value of a state (key) without having to traverse the entire transaction log from the blockchain ledger. The world state is updated upon transaction execution and follows the consensus algorithm of the network. The approach is that only after the transaction has been signed by endorser, executed by orderer and validated will eventually result in the update of the world state. If the transaction is considered invalid and has not passed the lifecycle it will not update the world state. 
+
+Some peers may not join the network from the beginning so for these nodes the world state will be empty. However since every new transactions represent a valid change in the world state therefore the world state can be generated easily and within some time it will be able to fully hold the latest assets' state.  
