@@ -374,28 +374,229 @@ With "multipart/form-data" the image is sent in series of parts. This approach a
 
 The second approach "application/json" is a standard format of sending structured data. It is useful for sending plain text or any other type of data. Since Hyperledger Fabric also uses JSON format to store assets and the only way to store the image in it is to convert the image in data type JSON supports. Hence the best option is to store it as a String and to do that the image is first converted to {\fontfamily{ccr}\selectfont base64} and when needed we can convert it back to an image type. So then we decided to do the conversion in Esp Eye itself and send the image as {\fontfamily{ccr}\selectfont base64} using JSON format. 
 The Listing \ref{json_esp} shows the parameters that are being sent to the IoT Gateway and the exact same parameters are inserted into Fabric ledger.
-\begin{lstlisting}[caption={JSON data in Esp Eye},label=json_esp, captionpos=b]
+\begin{lstlisting}[caption={JSON structure in Esp Eye},label=json_esp, captionpos=b]
 {
         DeviceId: 
         Face_Id: 
-        timestamp: 
-        imageData: 
+        Timestamp: 
+        ImageData: 
 }
 
 \end{lstlisting}
+
+
 \subsection{IoT Gateway}
 
-The IoT Gateway holds two important components, the nodejs server and the Hyperledger Fabric SDK that serves as the client for Hyperledger Fabric blockchain. The Express.js an application server framework enables to build the server in nodejs. 
-\subsubsection{Local Server}
+The IoT Gateway holds two important components, the nodejs server and the Hyperledger Fabric SDK that serves as the client for Hyperledger Fabric blockchain. The Express.js an application server framework enables to build the server in nodejs. With an exposed API in nodejs the Esp Eye will be able to send the data as in the Listing\ref{api_test}. The nodejs server will then pass the data to the Hyperledger Fabric SK for further propagation to the ledger.
+
+
+
+\begin{lstlisting}[caption={The exposed API for handling requests coming from Esp Eye},label=api_test, captionpos=b]
+app.post("/esptest", async (req, res) => {
+
+    if (req.body.ImageData) {
+        console.log(" Device Id is:-", req.body.DeviceId);
+        console.log(" Face id is :-", req.body.Face_Id);
+        console.log(" Base64 Image is:-", req.body.ImageData);
+        console.log(" Date Time is:-", req.body.Timestamp);
+    }
+
+    res.sendStatus(200);
+    console.log("Receided image and uploading to blockchain");
+    main(req.body.Face_Id, req.body.DeviceId, req.body.Timestamp, req.body.ImageData);
+});
+\end{lstlisting}
+
+
 
 \subsection{Hyperledger Fabric Setup}
+Hyperledger Fabric allows two or multiple organisations to be part of the ledger and the transaction lifecycle. In our use case of video surveillance we have two organisations and each organisation has one peer. The first organisation can be the institute itself which is willing to use and deploy the video surveillance and the other organisation would be the surveillance company which is monitoring the access control. 
+
+The Hyperledger Fabric implementation has two parts of the code: the Chaincode implementation and the client implementation. 
+
 \subsubsection{Chaincode implementation}
 
+The Chaincode implementation which is deployed and executed inside the network is shown in the Listing \ref{chaincode}. First of all the {\fontfamily{ccr}\selectfont fabric-contract-api} module for nodejs is used for the implementation of Hyperledger Fabric chaincode which provides the {\fontfamily{ccr}\selectfont Contract} interface. This API provides an entry to write the chaincode functions in order to allow the endorsing peers and blockchain clients to communicate. Hyperledger Fabric makes it possible to write chaincode in Go, Java and Javascript (nodejs). One of the biggest advantage is that no matter in which of the above languages the chaincode is implemented, it still allows the client to use a different language for communication but it has to be among one of the mentioned programming language. 
+Hence we decided to go for Javascript implementaion of the chaincode since the client is also implemented in Javascript. 
+
+There are a number of functions implemented each with its own purpose which can be split into two categories, the functions for inserting images into the ledger and querying images from the ledger.  For inserting images coming from the Esp Eye the {\fontfamily{ccr}\selectfont create\_Image} function is implemented. This function receives five arguments: {\fontfamily{ccr}\selectfont ctx}, {\fontfamily{ccr}\selectfont faceid}, {\fontfamily{ccr}\selectfont device\_id}, {\fontfamily{ccr}\selectfont timestamp} and the {\fontfamily{ccr}\selectfont imageitself}.
+The first argument {\fontfamily{ccr}\selectfont ctx} is the transaction context which keeps the state of the transaction. First of all it allows to maintain variables when invoking transactions. Secondly it offers a number of very important APIs to establish communication and perform transaction processing. As you can see in the Listing \ref{chaincode} {\fontfamily{ccr}\selectfont ctx.stub.putState} function assembles the arguments into key value pairs, where the key is the {\fontfamily{ccr}\selectfont faceid} and the rest of arguments will be inserted as values to that key. The {\fontfamily{ccr}\selectfont ctx.stub} is used to access the 
+{\fontfamily{ccr}\selectfont putState} API which writes to the ledger. Besides {\fontfamily{ccr}\selectfont ctx.stub} provides very important APIs for inserting into the ledger and querying it.  
 
 
 
 
-\section{Results}
+
+
+
+
+
+
+\begin{lstlisting}[caption={Chaincode for interacting with the network.},label=chaincode, captionpos=b]
+
+'use strict';
+const { Contract } = require('fabric-contract-api');
+
+class FabImages extends Contract {
+
+    async initLedger(ctx) {
+        console.info('============= START : Initialize Ledger ===========');
+        const images = [
+            {
+                device_id: 'Device 1',
+                timestamp: '2020 - 12 - 13T01: 47: 38Z',
+                docType: 'image',
+                imageitself: 'AAAFCAYAAACNbybl',
+
+            }
+        ];
+
+        for (let i = 0; i < images.length; i++) {
+            images[i].docType = 'image';
+            await ctx.stub.putState('Face id 0', Buffer.from(JSON.stringify(images[i])));
+            console.info('Added <--> ', images[i]);
+        }
+        console.info('============= END : Initializing Ledger ===========');
+    }
+
+    async queryImage(ctx, faceid) {
+        const imageAsBytes = await ctx.stub.getState(faceid); // get the image from chaincode state
+        if (!imageAsBytes || imageAsBytes.length === 0) {
+            throw new Error(`${faceid} does not exist`);
+        }
+        console.log(imageAsBytes.toString());
+        return imageAsBytes.toString();
+    }
+
+    async createImage(ctx, faceid, device_id, timestamp, imageitself) {
+        console.info('============= START : Create Image ===========');
+
+        const image = {
+            device_id,
+            timestamp,
+            docType: 'image',
+            imageitself
+
+        };
+
+        await ctx.stub.putState(faceid, Buffer.from(JSON.stringify(image)));
+        console.info('============= END : Create Image ===========');
+    }
+
+    async queryAllImages(ctx) {
+        const startKey = '';
+        const endKey = '';
+        const allResults = [];
+        for await (const { key, value } of ctx.stub.getStateByRange(startKey, endKey)) {
+            const strValue = Buffer.from(value).toString('utf8');
+            let record;
+            try {
+                record = JSON.parse(strValue);
+            } catch (err) {
+                console.log(err);
+                record = strValue;
+            }
+            allResults.push({ Key: key, Record: record });
+        }
+        console.info(allResults);
+        return JSON.stringify(allResults);
+    }
+
+    async retrieveHistory(ctx, key) {
+        console.info('getting history for key: ' + key);
+        let iterator = await ctx.stub.getHistoryForKey(key);
+        let result = [];
+        let res = await iterator.next();
+        while (!res.done) {
+            if (res.value) {
+                console.info(`found state update with value: ${res.value.value.toString('utf8')}`);
+                const obj = JSON.parse(res.value.value.toString('utf8'));
+                result.push(obj);
+            }
+            res = await iterator.next();
+        }
+        await iterator.close();
+        return result;
+    }
+
+    async query(ctx, key) {
+        console.info('querying for key: ' + key);
+        let returnAsBytes = await ctx.stub.getState(key);
+        let result = JSON.parse(returnAsBytes);
+        return JSON.stringify(result);
+    }
+
+    async querySpecificKey(ctx, key) {
+        console.info('querying for key: ' + key);
+        let returnAsBytes = await ctx.stub.getState(key);
+        let result = JSON.parse(returnAsBytes);
+        return result;
+    }
+}
+
+module.exports = FabImages;
+
+\end{lstlisting}
+
+
+Other functions implemented in the chaincode are useful for querying the ledger in different ways. For instance the function {\fontfamily{ccr}\selectfont queryAllImages}  retrieves the world state of all key pairs in the ledger. This is has been useful for testing purposes. In this case the function {\fontfamily{ccr}\selectfont getStateByRange} API is used to iterate over all sets of keys from the startKey until the endKey. 
+Additionally the functions {\fontfamily{ccr}\selectfont querySpecificKey} allows to query the world state of a specific key. This is achieved with the help of {\fontfamily{ccr}\selectfont ctx.stub.getState} API which retrieves the current value of the passed key. When we want to see the history of all values for a key the function function {\fontfamily{ccr}\selectfont retrieveHistory} can be used which takes in a key and returns the entire history of all values ever inserted for given key. 
+
+\subsubsection{Hyperledger Fabric Client implementation}
+The Hyperledger Fabric Client is how the outside world interacts with the blockchain network. In order for the client to interact with the Fabric network and chaincodes the {\fontfamily{ccr}\selectfont fabric-network} module for nodejs is used. Typically in Bazo blockchain and Ethereum a developer need to know the exposed gateway to interact with the network which normally the RESTfull services are used. 
+
+Hyperledger Fabric offers a number of classes through the module {\fontfamily{ccr}\selectfont fabric-network} for nodejs to make calls to the network. The most important class of this module is {\fontfamily{ccr}\selectfont Gateway}. It includes various methods to establish connection and interaction with the fabric network. The Listing \ref{client_connect} shows snippets of the client implementation. First of all the existing participant in our case the Esp Eye is a participant. This participant is connected to the fabric network in the right channel and will be allowed to access a particular chaincode which are all defined previously in the participant's access rights. Once the connection is established then the participant or client is allowed to submit transactions. Then the {\fontfamily{ccr}\selectfont submitTransaction} function will submit a transaction to the peeers (endorser) using a specified function of a chaincode by passing arguments needed for the function being used.  The transaction function will then be evaluated by the endorsing peers which will then further be submitted to the ordering service to eventually be inserted into ledger. 
+
+
+\begin{lstlisting}[caption={Client establishing the connection and submitting a transaction.},label=client_connect, captionpos=b]
+        // Create a new gateway 
+        const gateway = new Gateway();
+        await gateway.connect(ccp, { wallet, identity: 'appUser', discovery: { enabled: true, asLocalhost: true } });
+
+        // Get the network (channel) where the contract is deployed.
+        const network = await gateway.getNetwork('mychannel');
+
+        // Get the contract.
+        const contract = network.getContract('imagecontractupdated');
+
+        // Submit a transaction.
+        await contract.submitTransaction('createImage', faceid, deviceid, timestamp, imagebase64);
+        console.log('Transaction has been submitted');
+
+        // Disconnect from the gateway.
+        await gateway.disconnect();
+\end{lstlisting}
+
+We have seen now how a transaction is submitted using the {\fontfamily{ccr}\selectfont fabric-network} module. In order to retrieve and check that what have been submitted is in the ledger we can take the advantage of {\fontfamily{ccr}\selectfont evaluateTransaction} method. The purpose of this method is to query the ledger using the functions in the chaincode which resembles the GET method in HTTP requests. The chaincode function will only be evaluated by the endorsing peers and will not involve the ordering service and there will be no changes to the ledger state. 
+
+\subsection{Frontend Implementation}
+
+Considering that the image from its origin Esp Eye until it reaches the blockchain is of type {\fontfamily{ccr}\selectfont base64} and we are not able to see visually anything for that reason a web application is developed. For the development of web application we are using react Javascript library. The web application will take the advantage of the same local nodejs server for the backend. In the nodejs server we have exposed another gateway which can be seen in the Listing \ref{frontend}. 
+The client can retrieve the image in base64 from the ledger by making a single REST call using the GET method. The {\fontfamily{ccr}\selectfont getFile} endpoint will expect a key which is the faceID of a person. After that another client for Hyperledger Fabric is employed which actually is the same client (participant) which inserts images to the ledger. Similarly as in the Listing \ref{client_connect} the client first establishes the connection and only then can query the ledger. As already mentioned the {\fontfamily{ccr}\selectfont evaluateTransaction} method of the {\fontfamily{ccr}\selectfont contract} instance allows to read the ledger state.  
+
+\begin{lstlisting}[caption={The API gateway serving the web application.},label=frontend, captionpos=b]
+
+app.get("/getFile", async (req, res) => {
+    if (req.query.filehash) {
+        const chunks = [];
+        console.log("Key value:", req.query.filehash);
+        //let key = 'Face_id_0';
+        const result = await queryfrontend.main(req.query.filehash);
+        console.log(result);
+        res.send(result);
+        // res.send(Buffer.concat(chunks).toString());
+    } else {
+        res.status(501).send("Please provide face id");
+    }
+});
+
+\end{lstlisting}
+
+To retrieve the image the client has to query the ledger which means that we need to have a method in the chaincode to do so. Since we have implemented one chaincode then the method is reflected in the Listing \ref{chaincode} with the name {\fontfamily{ccr}\selectfont querySpecificKey}. The function expect the faceID of the person and only then the image will be returned to the client and be displayed on the web client. 
+
+
+
+
 
 
 
