@@ -2,3 +2,13 @@
 
 
 
+The main contribution of the thesis is to give a solution for the integrity and trust issues by incorporating the three domains: AI, Blockchain and IoT. With extensive research performed we could barely see the integration of the trio, however the advantages of them show promising future on how the three technologies complement each other to form a reliable architecture. In one hand we have materialized the idea of running face recognition entirely on Esp Eye. In such a memory constrained device the idea was accomplished with the Esp Who library which offer important APIs for face detection and recognition. At the beginning the implementation started with the ESP-IDF (Espressif IoT Development Framework) in order to upload firmware onto Esp Eye however Arduino IDE offered a better level of abstraction. On the other hand after carefully considering available BCs we resulted in selecting Hyperledger Fabric for storing images of recognized faces.
+Although there are a number of existing blockchain platforms but yet none of them is oriented towards the compatibility with IoT devices, this is reasoned with the fact that API endpoints are locked with Fabric SDK in order to interact with the blockchain.  The work followed with the implementation of a chaincode with multiple APIs for establishing communication with Farbric network. 
+Additionaly, many different technologies and communication protocols were considered. A bottom-up approach was employed for the implementation of technologies since the state of the art technologies were considered. Due to that also different programming languages were used such as python which is not reflected in the design. In order to show feasibility of the design Hyperledger Fabric is run in locally but eventually it can run on the cloud. Although RPI was used as a development environment Hyperledger Fabric was installed in an AMD processor supported machine this due to Hyperledger Fabric not supporting the ARM architecture. 
+The idea of performing face recognition in Esp Eye itself comes also with limitations and such that after many tries there were no libraries available for image encryption or ensuring device integrity. 
+
+To conclude the current solution stands out of the crowd due to its novel architecture which is proved successful in achieving the goal while keeping in mind the restrictions that come from the use case and the available technologies on market. 
+
+
+%ESP-IDF (Espressif IoT Development Framework) abbreviation
+%Throughout the project implementation we insisted to keep the face recognition running in the Esp Eye itself. However this come with trade off

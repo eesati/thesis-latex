@@ -11,9 +11,9 @@ In order to give a better understanding of IoT, AI and blockchain, it mirrors to
 
 IoT is transforming the world of things around us into a world of sensors that speak about the things. Practically almost anything can be equipped with a sensor and make the things smart. In terms of IoT the sensors are not just used to detect and measure but they are also to respond to changes thanks to the proliferation of internet-enabled devices which are embedded with computational power. 
 
-The number of IoT devices took over the population worldwide since 2008. Based on (ref123) the number of IoT devices is expected to increase and reach around 31 billion by the end of 2020. However this number is not expected to ever stop but it will be double by the end of 2025 as depicted in Figure~\ref{fig:num_of_iot} (ref124).
+The number of IoT devices took over the population worldwide since 2008. Based on \cite{ITU} the number of IoT devices is expected to increase and reach around 31 billion by the end of 2020. However this number is not expected to ever stop but it will double by the end of 2025 \cite{soton421529} as depicted in Figure~\ref{fig:num_of_iot} .
 
-Most IoT devices run on microcontrollers or microprocessors with very minimal processing power which makes them less powered than a smartphone. The reason behind is not that such devices cannot be equipped with more processing power but to be energy efficient and run with mimimal power on battery and reducing environmental impacts of the energy use. With such growing number of IoT devices in the near future it will eventually pose a challenge even without increasing the processing power of such devices. Eventualy there will be a high demand of developing a green communication accross the network (ref126). This will at some point also affect the developers IoT devices who will have to find more lightweight programs to run high consuming energy programs such as deep learning. As a result different algorithmic approaches are taking place and more efficient algorithms are being developed (ref128).
+Most IoT devices run on microcontrollers or microprocessors with very minimal processing power which makes them less powered than a smartphone. The reason behind is not that such devices cannot be equipped with more processing power but to be energy efficient and run with minimal power on battery and reducing environmental impacts of the energy use. With such growing number of IoT devices in the near future it will eventually pose a challenge even without increasing the processing power of such devices. Eventually there will be a high demand of developing a green communication across the network \cite{7057878}. This will at some point also affect the developers IoT devices who will have to find more lightweight programs to run high consuming energy programs such as deep learning. As a result different algorithmic approaches are taking place and more efficient algorithms are being developed \cite{8057306}.
 
 
 
@@ -23,7 +23,7 @@ Most IoT devices run on microcontrollers or microprocessors with very minimal pr
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/number_of_iot.png}
-    \caption{The growth of IoT devices from 2015 to 2025 ref(img1)}
+    \caption{The growth of IoT devices from 2015 to 2025 \cite{bdcc4040028}}
     \label{fig:num_of_iot}
 \end{figure}
 
@@ -37,7 +37,7 @@ We would like to mention a number of common characteristics that most IoT device
     \item Big data: IoT number one source of big data 
 \end{itemize}
 
-However IoT suffers from its typical architecture design which is the centralized architecture. These centralized server either on the cloud or on premise manages and deals with all requests coming from various nodes. This architecture comes with multiple challenges: scalability issues, security and privacy challenges and issues with the analysis of big data (ref130). 
+However IoT suffers from its typical architecture design which is the centralized architecture. These centralized server either on the cloud or on premise manages and deals with all requests coming from various nodes. This architecture comes with multiple challenges: scalability issues, security and privacy challenges and issues with the analysis of big data \cite{8627114}. 
 
 \subsection{Enabling Deep Learning in IoT}
 AI has become a buzzword and one of the topics that has a significant impact on many different domains. In Figure~\ref{fig:ai_terms} depicts the relationship between Artificial Intelligence, Machine Learning and Deep Learning. In simple words AI encapsulates the imitation of human intelligence by computers. Machine learning is the technique used to allow computer programs to access data and use it to automatically learn and improve from experience. The neural network involves a large number of processors operating in parallel arranged in tiers , in the same way neurons in our brain works. While deep learning employees neural networks but with many layers of neural networks. 
@@ -46,11 +46,11 @@ AI has become a buzzword and one of the topics that has a significant impact on 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/ai_classification.png}
-    \caption{Relationship of AI terms.(refimg12)}
+    \caption{Relationship of AI terms \cite{AiMachine}.}
     \label{fig:ai_terms}
 \end{figure}
 We already know that AI can solve and make sense of the immense amount of data produced from IoT devices. However the main question for research appears “How to deploy neural networks directly on these tiny devices? Therefore there is an opportunity and challenge at the same time to run machine learning on such tiny IoT devices based on microcontrollers. By running machine learning on these tiny devices, we can directly perform real time data analytics in the device itself, therefore avoiding the need to store all the data generated from the IoT device. Typically commercial use cases of smart IoT devices often offload the Artificial Intelligence part to the cloud. 
-One of the most recent study(ref321) that worked on this direction tested two approaches with deep learning: 
+One of the most recent study \cite{8057306} that worked on this direction tested two approaches with deep learning: 
 \begin{itemize}
     \item Offloading deep learning platforms to the cloud
     \item Migrate deep learning to an IoT device
@@ -59,13 +59,13 @@ One of the most recent study(ref321) that worked on this direction tested two ap
 The two approaches were tested and look from two different perspectives,  whether offloading machine learning can reduce energy efficiency and satisfy the real time requirements of object recognition. 
 In the first approach they used convolutional neural networks on the cloud, while the Jetson TX1 was responsible to just take images and forward them to the cloud. The results show that executing machine learning in the Jetson TX1 consumed more energy compared to the offloading to the cloud. However offloading AI to the cloud also comes with drawbacks, it has lead to a range of latency starting from 2 seconds that goes up to 5 seconds which is far higher compare to the execution of AI in the Jetson TX1 itself. This leads to conclude that the variability of response time make it quite unreliable and not useful for real time AI processing. 
 
-Furthermore MIT researchers ref(mit123) have implemented a sytem called MCUNet, which has a high potential to bring deep learning in much smaller devices like tiny computer chips despite their limited memory and computational power. 
+Furthermore MIT researchers \cite{mit123} have implemented a system called MCUNet, which has a high potential to bring deep learning in much smaller devices like tiny computer chips despite their limited memory and computational power. 
 
 \subsection{Intersection of Blockchain and AI}
 
-There is a high research on Blockchain and AI but analysed in isolation and in various domains and applications. Some research ref(17) focus on the application of AI in the Blockchain for making blockchain more efficient for instance, consensus mechanisms and better governance. However there seem to be more research and applications of Blockchain in AI. Similar to IoT, AI domain also suffers from security, its centralized architecture and resource limitations. This is exactly what blockchain is looking to solve. There is a lot of discussion and research in this area, however most of them are reviews and solutions that do not provide a use case or implement such solutions. In order to have a global image the Table ref() describes the features of the two technologies and the benefits of integrating such features.
+There is a high research on Blockchain and AI but analysed in isolation and in various domains and applications. Some research \cite{8481263} focus on the application of AI in the Blockchain for making blockchain more efficient for instance, consensus mechanisms and better governance. However there seem to be more research and applications of Blockchain in AI. Similar to IoT, AI domain also suffers from security, its centralized architecture and resource limitations. This is exactly what blockchain is looking to solve. There is a lot of discussion and research in this area, however most of them are reviews and solutions that do not provide a use case or implement such solutions. In order to have a global image the Table \ref{crouch} describes the features of the two technologies and the benefits of integrating such features.
 
-There is another interesting contribution (ref) that came up with an AI blockchain platform to fight the propagation of fake news. This platform allows publishers to setup a distribution platform in the blockchain while AI will be monitoring on the actors who are adding news to the blockchain. Expectation is that the blockchain will server as the "factual database" to trace back the news. So the news which cannot be traced back to the blockchain will be automatically considered fake. 
+There is another interesting contribution \cite{8884985} that came up with an AI blockchain platform to fight the propagation of fake news. This platform allows publishers to setup a distribution platform in the blockchain while AI will be monitoring on the actors who are adding news to the blockchain. Expectation is that the blockchain will server as the "factual database" to trace back the news. So the news which cannot be traced back to the blockchain will be automatically considered fake. 
 
 
 
@@ -96,18 +96,15 @@ Changing
 & Improved trust on robotics decision \\
         \bottomrule
     \end{tabular}
-    \caption{Benefits of integrating blockchain into AI  (adopted from \ldots%\citealt{crouch2012doing}
-    )}
+    \caption{Benefits of integrating blockchain with AI.}
     \label{crouch}
 \end{table}
 
 \subsection{Integration of Blockchain with IoT}
 
-We have already listed a number of issues that IoT world is facing, which mainly is the centraized architecture, security and privacy. Therefore pretty much of the research is focused in this area, typically with the advantages of blockchain those gaps can be closed. For instance ref(IS) attempted to discover the security gaps that could be mitigated with the help of the blockchain to ensure the reliability and availability of the data.
+We have already listed a number of issues that IoT world is facing, which mainly is the centraized architecture, security and privacy. Therefore pretty much of the research is focused in this area, typically with the advantages of blockchain those gaps can be closed. For instance \cite{inbook223ris} attempted to discover the security gaps that could be mitigated with the help of the blockchain to ensure the reliability and availability of the data.
 
-Other studies (refIS) attempted to integrate crypto based blockchains such as Ethereum in their approaches. We argue here that most of the crypto based blockchains are not efficient in storing data coming from IoT devices. First users have to pay fees for each transactions and the there is a limitation in the number of transactions it can process. Although we can escape from the centralization still there is the risk of bottleneck. Therefore in our study we will be using Hyperledger Fabric a non crypto based blockchain aimed for storing data. 
-
-
+Other studies \cite{8598784} attempted to integrate crypto based blockchains such as Ethereum in their approaches. We argue here that most of the crypto based blockchains are not efficient in storing data coming from IoT devices. First users have to pay fees for each transaction and the there is a limitation in the number of transactions it can process. Although we can escape from the centralization still there is the risk of bottleneck. Therefore in our study we will be using Hyperledger Fabric a non crypto based blockchain aimed for storing data. 
 
 
 
@@ -140,49 +137,17 @@ Other studies (refIS) attempted to integrate crypto based blockchains such as Et
 
 
 
-\begin{comment}
-
-\begin{table}[!h]
-\definecolor{LightCyan}{rgb}{0.88,1,1}
-\definecolor{Gray}{gray}{0.9}
-\newcolumntype{g}{>{\columncolor{LightCyan}}c}
-\noindent\begin{tabularx}{\textwidth}{|g|l|X|}
-
-\hline apple  & StackOverflow & Dardh \\
-\hline 
-\begin{itemize}
-\item[--] Decentralized
-
-\item[--] Deterministic
-\item[--] Immutable
-\item[--] Data Integrity
-
-\end{itemize}
-
-& StackOverflow &
- lots of long text. lots of long text. lots of long text. lots of long text. lots of long text. \\
-\hline 
-
-\end{tabularx}
-\caption{Truth Tables and Accuracy Measures for each modeling library.}
-    \label{tab:truthTables}
-
- \end{table}
-
-
-
-\end{comment}
 
  
  
  
  \section{Use cases on AI, IoT and Blockchain}
  
- We have already described the intersections on how Blockchain, AI and IoT accommodate each other in pair, however there is a very high potential for the usage of all the three domains in one use case. With such a high number of IoT devices there is a potential to take the advantage of AI and Blockchain at the same time. Based on reforacle, every institution  which will take the advantage of exploiting these technologies, it will have the chance to radically enhance their existing processes and create entirely new business models. 
+ We have already described the intersections on how Blockchain, AI and IoT accommodate each other in pair, however there is a very high potential for the usage of all the three domains in one use case. With such a high number of IoT devices there is a potential to take the advantage of AI and Blockchain at the same time. Based on \cite{oracle}, every institution  which will take the advantage of exploiting these technologies will have the chance to radically enhance their existing processes and create entirely new business models. 
  
-An interesting work ref(smartcity)  presents how the collaboration of the three domains can build a sustainable smart city. Given the many issues people in urban areas face, the concept of the sustainable smart city brings new opportunities for the application. With their new approach they aim to have a transparent monitoring system for measuring pollution which in turn will help raise awareness to the population. 
+An interesting work \cite{smartcity}  presents how the collaboration of the three domains can build a sustainable smart city. Given the many issues people in urban areas face, the concept of the sustainable smart city brings new opportunities for the application. With their new approach they aim to have a transparent monitoring system for measuring pollution which in turn will help raise awareness to the population. 
 
-In another use case the authors (refhomeauto) propose an IoT based home automation and surveillance system. In this setup they have employed a raspberry pi, a camera attached to it and a DC motor for controlling the door. The video surveillance is not detecting or recognizing people, so the burden falls into the owner who through the help of a front end will be able to open the door. Therefore compare to our solution there is no AI and blockchain integrated. 
+In another use case \cite{refhomeauto} the authors propose an IoT based home automation and surveillance system. In this setup they have employed a raspberry pi, a camera attached to it and a DC motor for controlling the door. The video surveillance is not detecting or recognizing people, so the burden falls into the owner who through the help of a front end will be able to open the door. Therefore compare to our solution there is no AI and blockchain integrated. 
 
 
 A use case that pretty much is matching with our use case is a design and implementation of a camera based sensor for room capacity monitoring. The aim of it is to count the number of people present in a room with the help of a raspberry pi and a camera. In Figure~\ref{fig:raum} we can see the architectural overview. 
@@ -190,13 +155,13 @@ A use case that pretty much is matching with our use case is a design and implem
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/raumbelegung.png}
-    \caption{Architectural Overview(ref)}
+    \caption{Architectural Overview \cite{raumbelegung}.}
     \label{fig:raum}
 \end{figure}
 
-Their architecture employees AI and IoT. This use case was designed and implemented by a group of students at FHNWS who employed a raspberry pi equipped with camera and lora gateway. The role of camera is to just take pictures and after that some machine learning algorithm will analyze the image and find the number of people in the room. Once done the data is then send to a LoraWan Server. To achieve that they have attached a LoraWan antenna to the RPI and eventually with a front end they can monitor the room. So face detection happens in the RPI, the algorithm counts the number of people in the image and sends it to the Lorawan Backend Server. From here we can conclude that the issue of centralisation is still open, data is being stored in a database, security issues are not tackled enough. Besides there is also the need for a RPI to be placed in a room as the camera is attached to it and that needs power to run. 
+Their architecture employees AI and IoT. This use case was designed and implemented by a group of students at FHNWS \footnote[1]{Fachhochschule Nordwestschweiz} who employed a raspberry pi equipped with camera and lora gateway. The role of camera is to just take pictures and after that some machine learning algorithm will analyze the image and find the number of people in the room. Once done the data is then send to a LoraWan Server. To achieve that they have attached a LoraWan antenna to the RPI and eventually with a front end they can monitor the room. So face detection happens in the RPI, the algorithm counts the number of people in the image and sends it to the Lorawan Backend Server. From here we can conclude that the issue of centralisation is still open, data is being stored in a database, security issues are not tackled enough. Besides there is also the need for a RPI to be placed in a room as the camera is attached to it and that needs power to run. 
 
-With out proposed architecture we are not only going automate the IoT-based surveillance system but provide a robust solution that will take care of the leaks that AI and blockchain will be able to neutralize. 
+With our proposed architecture we are not only going automate the IoT-based surveillance system but provide a robust solution that will take care of the leaks that AI and blockchain will be able to neutralize. 
 
 
 \chapter{Face Detection and Recognition in Esp Eye}
@@ -247,7 +212,7 @@ There are a number of algorithms that have been developed and now used to tackle
 
 It is important to mention that a typical computer or a laptop possess an AMD processor, while a raspberry pi and smart phones and some other devices like watches are equipped with a ARM processor. Obviously ARM architecture offers lower performance compare to AMD, but there is a reason behind, the ARM processors consume less power than AMD processors. Performing real time recognition on both AMD and ARM is not an issue, both can handle them. However both processors need power either plugged or if on battery they can last max one day long. In contrast the low powered IoT devices can run for years with a typical voltage of 3.6 V. Therefore to our knowledge so far it is not possible to perform real time recognition with a processor other then the above mentioned, AMD and ARM. 
 
-ESP EYE is the first device to perform real time face recognition. However, this does not mean that the face detection and recognition algorithm have been used one to one. ESP EYE is one of its kind that comes with ESP WHO platform which supports both face detection and face recognition. The ESP EYE is equipped with Tensilica LX6 dual core processor. To our knowledge this is the only device that can perform real time face recognition in a microprocessor that lies out of the two classes AMD and ARM processors. 
+ESP EYE is the first device to perform real time face recognition. However, this does not mean that the face detection and recognition algorithm have been used one to one. ESP EYE is one of its kind that comes with ESP WHO \cite{esp-who} platform which supports both face detection and face recognition. The ESP EYE \cite{espeye} is equipped with Tensilica LX6 dual core processor. To our knowledge this is the only device that can perform real time face recognition in a microprocessor that lies out of the two classes AMD and ARM processors. 
 
 \section{Face detection with deep learning using Multi-Technology Network Management (MTNN)}
 
@@ -256,7 +221,7 @@ MTMN refers to both MTCNN (Multi-task Cascaded Convolutional Networks) and Mobil
 
 \subsection{MTCNN a three layer CNN model}
 
-MTCNN is one of the state of the art approaches which is described and published in the paper "Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks" ref(mtcnn) in 2016. MTCNN is popular because it has achieved 95 percent accuracy on a range of banchmark datasets. MTCNN is a novel approach because it performs a lightweight Convolutional Neural Network based framework which actually performs simultaneously face detection and alignment whereas in other CNN-based frameworks face detection and alignment are two distinct processes.   
+MTCNN is one of the state of the art approaches which is described and published in the paper "Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks" \cite{refmtcnn} in 2016. MTCNN is popular because it has achieved 95 percent accuracy on a range of banchmark datasets. MTCNN is a novel approach because it performs a lightweight Convolutional Neural Network based framework which actually performs simultaneously face detection and alignment whereas in other CNN-based frameworks face detection and alignment are two distinct processes.   
 Due to its lightweight CNN architecture it can perform in real time which is possible to run it in an ESP32 chip. 
 
 The process consists of three stages of Convolutional Neural Networks that are able to detect faces and landmark location such as eyes, nose, and mouth : 
@@ -275,14 +240,14 @@ First of all once the image is captured it will be scaled into multiple differen
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/mtcnn.png}
-    \caption{ Pipeline of MTCNN that includes three-stage multi-task deep convolutional networks.}
+    \caption{ Pipeline of MTCNN that includes three-stage multi-task deep convolutional networks \cite{refmtcnn}.}
     \label{fig:mtcnn}
 \end{figure}
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/pyramid.png}
-    \caption{ Image rescaled in a form of a pyramid}
+    \caption{ Image rescaled in a form of a pyramid \cite{imagepyramid} }
     \label{fig:pyramid}
 \end{figure}
 
@@ -299,7 +264,7 @@ The aim of the this network is to check whether there is a face in the input and
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/3stages.png}
-    \caption{ MTCCN: P-Net, R-Net and O-Net structure}
+    \caption{ MTCCN: P-Net, R-Net and O-Net structure \cite{refmtcnn}.}
     \label{fig:3stages}
 \end{figure}
 
@@ -307,7 +272,7 @@ The aim of the this network is to check whether there is a face in the input and
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/non-max.png}
-    \caption{ Non-Maximum Suppression}
+    \caption{ Non-Maximum Suppression \cite{boxescar}.}
     \label{fig:non-max}
 \end{figure}
 \subsubsection{Refine Network or R-net}
@@ -355,7 +320,7 @@ Before reaching the next neuron, a convolution or a filter is applied to the inp
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/convolution.png}
-    \caption{The convolution operation}
+    \caption{The convolution operation \cite{simpleconvolution}.}
     \label{fig:conv}
 \end{figure}
 
@@ -363,7 +328,7 @@ Before reaching the next neuron, a convolution or a filter is applied to the inp
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/filters.png}
-    \caption{Examples of filters}
+    \caption{Examples of filters \cite{simpleconvolution}.}
     \label{fig:filter}
 \end{figure}
 From here we can understand the reason behind the staging. Performing the convolution to the image directly from the last stage we would need a lot of computation because filtering obviously takes time. Imagine having an image where the person to be detected is standing far away and in the image that person may cover for example only 5x5 pixels out of an image of 360x240. So applying a high number of filters in each extracted image with 5x5 pixels is not efficient. So the idea is to first apply filtering in larger parts of the image so that we can get rid of candidate windows which do not include faces.
@@ -380,7 +345,7 @@ However since there are 3 channels we need to also have the convolutional kernel
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/normalconvolution2.png}
-    \caption{Normal convolution}
+    \caption{Normal convolution \cite{normalconvolution}.}
     \label{fig:normconv}
 \end{figure}
 
@@ -399,7 +364,7 @@ The advantage is to filter each input channel separately for edge detecting and 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/depthwise2.png}
-    \caption{Depthwise convolution}
+    \caption{Depthwise convolution \cite{normalconvolution}.}
     \label{fig:depthconv}
 \end{figure}
 
@@ -414,21 +379,21 @@ With normal convolution since the input image has 3 channels we apply the kernel
 
 \section{Face Recognition Model Based on Convolutional Neural Network}
 
-Face recognition is done using MobileFaceNet which consists of MobileNetv2 and ArcFace algorithm. The output of face detection is the aligned face with human face coordinates: bounding box with image and landmarks. This output will be the input for face recognition. Only if human is detected with the above mentioned model then face recognition algorithm will fire which will generate a Face ID. In order to verify who that person is, it first has to check if that person exist in the database. The next step is to compare the newly generated Face ID with the existing Face IDs. Most likely there will not be an exact match for Face IDs even if it is from the same person. So the idea is to obtain the distance between the Face IDs which is done by Euclidean distance. In order to determine if the Face ID is from the same person it will compare the distance between the Face IDs based on allowed threshold. 
+Face recognition is done using MobileFaceNet \cite{DBLP:journals/corr/HowardZCKWWAA17} which consists of MobileNetv2 \cite{DBLP:journals/corr/abs-1801-04381} and ArcFace algorithm. The output of face detection is the aligned face with human face coordinates: bounding box with image and landmarks. This output will be the input for face recognition. Only if human is detected with the above mentioned model then face recognition algorithm will fire which will generate a Face ID. In order to verify who that person is, it first has to check if that person exist in the database. The next step is to compare the newly generated Face ID with the existing Face IDs. Most likely there will not be an exact match for Face IDs even if it is from the same person. So the idea is to obtain the distance between the Face IDs which is done by Euclidean distance. In order to determine if the Face ID is from the same person it will compare the distance between the Face IDs based on allowed threshold. 
 
 \subsection{MobileFaceNet for face recognition using CNN}
-MobileFaceNet is one of state of the art approaches for face verification developed by the same authors who developed MobileNet. Regarding this approach they also published a paper. MobileFaceNet is claimed to be one of the very efficient CNN model which addresses high-accuracy real-time face verification on embedded devices. Offline face verification is important on mobile devices because many applications equipped with face recognition need to run offline. 
+MobileFaceNet is one of state of the art approaches for face verification developed by the same authors who developed MobileNet \cite{howard2017mobilenets}. Regarding this approach they also published a paper. MobileFaceNet \cite{Chen2018MobileFaceNetsEC} is claimed to be one of the very efficient CNN model which addresses high-accuracy real-time face verification on embedded devices. Offline face verification is important on mobile devices because many applications equipped with face recognition need to run offline. 
 MobileFaceNets uses around one million parameters and can achieve a very high accuracy with 99.55 percent for face verification after being trained with ArcFace algorithm. The MobileFaceNet model takes the advantage of a global
 depthwise convolution layer rather than a global average pooling layer or a fully
 connected layer to output a discriminative feature 512-d vector. 
 
-Typically during face verification the models preprocess the images by extracting face features and eventually compare the new generated Face ID or vector with the already saved Face IDs by either comparing the similarities or the distance. Similarly MobileNetV2 is used here also for face feature embedding. The face verification process as seen in Figure~\ref{fig:face_ver} starts the with MTCNN and then after a face is detected with its landmarks then the aligned face is created. The aligned face is the bounding box with the face detected in size 112x112 which is then then used as an input for face reocognition. The aligned face is then mapped to a feature vector. 
+Typically during face verification the models preprocess the images by extracting face features and eventually compare the new generated Face ID or vector with the already saved Face IDs by either comparing the similarities or the distance. Similarly MobileNetV2 is used here also for face feature embedding. The face verification process as seen in Figure~\ref{fig:face_ver} starts the with MTCNN and then after a face is detected with its landmarks then the aligned face is created. The aligned face is the bounding box with the face detected in size 112x112 which is then then used as an input for face recognition. The aligned face is then mapped to a feature vector. 
 
 
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/face_recognition.png}
-    \caption{Face verification}
+    \caption{Face verification \cite{Chen2018MobileFaceNetsEC}.}
     \label{fig:face_ver}
 \end{figure}
 
@@ -472,7 +437,7 @@ Hyperledger Fabric differs from other blockchains as it provides solutions to th
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/HyperledgerArchitecture.jpg}
-    \caption{Fabric Architecture}
+    \caption{Fabric Architecture \cite{technical-dive}.}
     \label{fig:fabric_arch}
 \end{figure}
 
@@ -576,7 +541,7 @@ Figure~\ref{fig:ledgerdiagram} shows the structure of blockchain with the blocks
 \begin{figure}[!htb]
     \centering
     \includegraphics[width=1\textwidth]{figures/ledgediagram.png}
-    \caption{The structure of the ledger.}
+    \caption{The structure of the ledger \cite{ledger}. }
     \label{fig:ledgerdiagram}
 \end{figure}
 

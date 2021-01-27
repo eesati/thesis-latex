@@ -242,7 +242,7 @@ After twisting these parameters for the {\fontfamily{ccr}\selectfont FRAMESIZE\_
 \begin{lstlisting}[caption={Face detection configurable parameters},label=mtmn_configurable, captionpos=b]
  mtmn_config_t mtmn_config = {0};
   mtmn_config.type = NORMAL;
-  mtmn_config.min_face = 200;
+  mtmn_config.min_face = 80;
   mtmn_config.pyramid = 0.7; 
   mtmn_config.pyramid_times = 4;
   mtmn_config.p_threshold.score = 0.6;
@@ -257,7 +257,22 @@ After twisting these parameters for the {\fontfamily{ccr}\selectfont FRAMESIZE\_
 
 \end{lstlisting}
 
+With {\fontfamily{ccr}\selectfont FRAMESIZE\_QVGA} and {\fontfamily{ccr}\selectfont FRAMESIZE\_CIF} the Esp Eye with face detection and recognition run smoothly and both perform almost equally against quality measures. One difference between them is the number of frames per second. The larger the image in size the more processing time it takes. Therefore due to higher width the {\fontfamily{ccr}\selectfont FRAMESIZE\_CIF} consumes more processing power and it can achieve in average 3.2 fps whereas with {\fontfamily{ccr}\selectfont FRAMESIZE\_QVGA} we can have 5.2 fps. 
+Both {\fontfamily{ccr}\selectfont FRAMESIZE\_QVGA} and {\fontfamily{ccr}\selectfont FRAMESIZE\_CIF} were evaluated against the parameters as in Listing \ref{mtmn_configurable}.
+
+The first parameter {\fontfamily{ccr}\selectfont min\_face} was tested with values to 80 and 200. When {\fontfamily{ccr}\selectfont min\_face} is set to 200 then face detection algorithm took less processing time. In average it took 700 ms for the face to be recognized whereas when {\fontfamily{ccr}\selectfont min\_face} it took 1000 ms, the difference mainly lies in the processing time for face detection. The higher the {\fontfamily{ccr}\selectfont min\_face} the less processing power is needed. However the recognition rate may decrease since the person to be detected must stay close to the camera because it cannot reach to detect faces smaller than 200x200 in the frame. 
+
+
+Regarding the {\fontfamily{ccr}\selectfont pyramid} which accepts values between 0 and 1, the testing was performed with lowest to highest values, with value 2 the recognition rate fall and towards the highest value the recognition rate improved a lot. When {\fontfamily{ccr}\selectfont pyramid} was set lower then 0.3 Esp Eye was not able to detect any person.  Throughout, the processing time remained unchanged. However with {\fontfamily{ccr}\selectfont pyramid\_times} we were not able to see any differences when the values between 1 and 100 were assigned.  
+
+
+Figure~\ref{fig:energy}
 
 
 
-
+\begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/energy.png}
+    \caption{Energy Performance.}
+    \label{fig:energy}
+\end{figure}
