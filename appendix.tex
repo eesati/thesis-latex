@@ -1,30 +1,273 @@
 \appendix
 
 \chapter{Installation Guidelines}
-\begin{comment}
-For Docker, see~\ref{run-with-docker}.
-For manual installation, see~\ref{manual-installation-ubuntu}
+
+\subsection{Mandatory Steps for preparing the environment}
+In order to successfully replicate the implementation in your environment some prior information is needed. First of all, we strongly encourage to install HLF in an AMD processor based computer since HLF does not support ARM architectures. However uploading code to Esp Eye it does not matter from which OS you are using. Throughout this guideline it is assumed that Git is installed. 
+
+\subsection{Arduino Firmware for Esp Eye}
+
+All the files for the Esp Eye, IoT Gateway and HLF reside in the shared git repository. To start with use the command below in you desired directory where you want to start replicating this project. 
+
+
+\framebox[1.1\width]{git clone https://github.com/eesati/Master-Thesis.git } \par
+
+After having done the above there are a number of directories, the ones which we are interested now is the {\fontfamily{ccr}\selectfont Arduino} folder and {\fontfamily{ccr}\selectfont Arduino15} folder. In order to upload firmware Arduino Ide must be installed. 
+In order to do so follow this link for installation depending on your environment 
+\framebox[1.1\width]{ https://www.arduino.cc/en/Guide}
+
+In order to program Esp Eye with Arduino IDE the ESP32 board needs to be installed by following these steps: 
+\begin{enumerate}
+    \item In Arduino, go to File> Preferences
+    \item Paste the following link \framebox[1.1\width]{ https://dl.espressif.com/dl/package\_esp32\_index.json} under Additional Boards Manager and click OK.
+    
+    
+    \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/ArduinoIDE.png}
+    \caption{Installing ESP32 board.}
+    \label{fig:eessdff}
+\end{figure}
+    \item After that Go to Tools > Board > Boards Manager… and search for esp32 and install the latest version of it. See Figure~\ref{fig:eessdff}. 
+    
+      \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/Arduinoboard.png}
+    \caption{Installing ESP32 library.}
+    \label{fig:eessdff}
+\end{figure}
+    \item It should be done. Now you can go to Tools > Board and select AI THINKER. 
+
+ 
+\end{enumerate}
+
+
+After that a number of libraries have to be installed in Arduino IDE: {\fontfamily{ccr}\selectfont Arduino\_JSON}, {\fontfamily{ccr}\selectfont Wifi}, {\fontfamily{ccr}\selectfont Wifi101}, {\fontfamily{ccr}\selectfont ESP32\_Mail\_Client} and {\fontfamily{ccr}\selectfont NTPClient}. 
+By going to Tools > Manage Libraries you can install each one by one. 
+
+The {\fontfamily{ccr}\selectfont Arduino} folder contains the firmware for Esp Eye and additional libraries. There are multiple Arduino files which show the step by step implementation. The last file to be uploaded in Arduino is: 
+
+\framebox[1.1\width]{ Arduino/Final\_for\_submission/Final\_for\_submission.ino  } \par
+
+\subsubsection{Registering Face IDs}
+However in order to register face ids there is another sketch that needs to be uploaded to do that. Since the face ids are stored in flash then some changes need to be done in installation folder where Arduino IDE is installed in your computer. Before uploading the code for registration of faces there is a need to partition the flash to save little space for face Ids. Now you need to go to the partition folder which is typically located under this directory:
+ 
+For windows downloaded Arduino Ide from Arduino Website:
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+  C > Users > *your-user-name* > AppData > Local > Arduino15  > packages > esp32 > hardware > esp32 > 1.0.4 > tools > partitions }}
+ 
+
+For Mac or Linux: 
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+  Users > *your-user-name* > Library > Arduino15  > packages > esp32 > hardware > esp32 > 1.0.4 > tools > partitions }}
+
+Now copy the file {\fontfamily{ccr}\selectfont faceid\_partitions.csv} found in the root directory of the repository and paste in the directory above. 
+
+Now to let the board know about the partitioning there is a need to update the file {\fontfamily{ccr}\selectfont board.txt } located under the folder 1.0.4 which is in the two directories back from the partition folder and add the following lines: 
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+esp32wrover.menu.PartitionScheme.faceid\_partition=Face Recognition (2621440 bytes with OTA)\par
+esp32wrover.menu.PartitionScheme.faceid\_partition.build.partitions=faceid\_partitions
+
+esp32wrover.menu.PartitionScheme.faceid\_partition.upload.maximum_size=2621440}}
+
+Now use the {\fontfamily{ccr}\selectfont Enroll\_faces.ino } sketch to enroll face ids. After enrolling faces then upload the {\fontfamily{ccr}\selectfont Final\_for\_submission.ino } sketch. Finally, since the Esp Eye firmware acts as a station there is a need to update the SSID and password to connect to. 
+
+
+
+\subsection{Hyperledger Fabric installation}
+
+The Fabric network with implemented chaincode is located under {\fontfamily{ccr}\selectfont HLF } directory. At the time when we installed it HLF was the latest version but now it is no longer anymore and it is known as v2.1. 
+
+We strongly encourage to have a look at the official HLB site for installation guidelines located at :
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+https://hyperledger-fabric.readthedocs.io/en/release-2.1/getting\_started.html}}
+
+\subsubsection{Prerequisites}
+Before beginning the installation, there a number of prerequisites that need to be followed. Which can be seen also here in the link below:
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+https://hyperledger-fabric.readthedocs.io/en/release-2.1/prereqs.html}}
+
+
+\begin{enumerate}
+    \item  The latest version of git for your OS
+    \item The latest version of cURL
+    \item The latest version of Docker and Docker Compose
+\end{enumerate}
+
+\subsubsection{Installing Hyperledger Fabric binaries and docker images}
+
+\subsubsection{First method}
+Now it is time to install Hyperledger Fabric binaries and docker images. For now there are two ways to do that, one way is to install a clean copy of HLP. Which can be seen in more detail in this link : 
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+https://hyperledger-fabric.readthedocs.io/en/release-2.1/install.html}}
+
+The github repository for HLF need to be cloned in a local directory, for macOS it has to use a location under /Users:
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+git clone https://github.com/hyperledger/fabric-samples.git }}
+
+Now it is the time to install binaries and docker images. To do so there should be a fabric-sample directory. In terminal under that directory execute the following command: 
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+curl -sSL https://bit.ly/2ysbOFE | bash -s -- <fabric\_version> <fabric-ca\_version> <thirdparty\_version> }}
+
+
+
+Which in our case would translate to v2.1 as below: 
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.1.1 1.4.7 0.4.20 }}
+
+
+To pick up the docker containers without going to the path for each binary, it is recommended to do this: 
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+export PATH=<path to the cloned HLF location>/bin:$PATH
+
+}}
+
+
+
+
+After that copy the {\fontfamily{ccr}\selectfont imagestore} folder under HLF and paste at the cloned copy of the Hyperledger Fabric. Under {\fontfamily{ccr}\selectfont chaincode} folder of HLF  we have the chaincode with a folder named imagestore copy that and paste under chaincode of the newly cloned Hyperledger Fabric under chaincode. It should by now be ready to run the project. 
+
+
+
+
+\subsubsection{Second method}
+The second way is to use the HLF directory of ours but a number of changes need to be done. First the {\fontfamily{ccr}\selectfont bin} folder has to be deleted because it contains the previous installed docker images. 
+
+After that the binaries and docker images need to be installed locally. Similarly as above under the HLF directory the binaries need to be installed using the following command in Terminal: 
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+curl -sSL https://bit.ly/2ysbOFE | bash -s -- 2.1.1 1.4.7 0.4.20 }}
+
+
+To pick up the docker containers without going to the path for each binary, it is recommended to do this: 
+
+\framebox{\parbox{\linewidth-2}{\itshape%
+export PATH=<path to the cloned HLF location>/bin:$PATH
+
+}} 
+It is now expected that Hyperledger Fabric is installed and ready to be used. The two methods apply to all OS however the prerequisites may have to be installed using different package manager. 
+For any issues it is recommended to follow the official HLF documentation links as above.
+
+
+
+
+
+\subsubsection{Hyperledger Fabric application SDKs} 
+
+Hyperledger Fabric provides a number of SDKs to support developing applications. Since we are using nodejs for the server, similarly nodejs SDK for fabric client is used. 
+The prerequisites for nodejs SDK is that the following must be installed first: 
+
+\begin{itemize}
+    \item Node.js, version 10 is supported from 10.15.3 and higher
+    \item  Node.js, version 12 is supported from 12.13.1 and higher
+    \item npm tool version 6 or higher
+\end{itemize}
+
+To install the nodejs SDK:
+
+\framebox{\parbox{\linewidth-2}{\itshape% 
+npm install fabric-network
+}} 
+
+Hyperledger Fabric also offers a contract API for developing smart contacts. For nodejs use following command to install it:  
+
+\framebox{\parbox{\linewidth-2}{\itshape% 
+npm install --save fabric-contract-api
+}} 
+
+The main folders where our implementation lies in the source code of our project is {\fontfamily{ccr}\selectfont imagestore} folder. We strongly recommend to do :
+
+\framebox{\parbox{\linewidth-2}{\itshape% 
+npm install
+}} 
+under the folder
+{\fontfamily{ccr}\selectfont /imagestore/javascript} where the nodejs server and HLF client are and under {\fontfamily{ccr}\selectfont /imagestore/frontend} which is the react web application.  
+
+
+\subsubsection{Running Hyperledger Fabric}
+To start the Fabric network, docker must be running. 
+To start with in Terminal go to {\fontfamily{ccr}\selectfont imagestore} and do: 
+
+\framebox{\parbox{\linewidth-2}{\itshape% 
+./startNetwork.sh javascript
+}}
+And it should look like the Figure Figure~\ref{fig:eessdffsfsf}.
+
+    \begin{figure}[!htb]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/RunningHLF.png}
+    \caption{ }
+    \label{fig:eessdffsfsf}
+\end{figure}
+This script will start the network and docker containers, besides it will simultaneously deploy the smart contract specified in the chaincode. If you want to know more see the startNetwork.sh file. Basically it creates the network with 2 organisations and 2 ordering peers. The chaincode also gets deployed which is located under 
+{\fontfamily{ccr}\selectfont /chaincode/imagestore/javascript/}.
+
+The last step wow to create an Administrator and a user move to {\fontfamily{ccr}\selectfont /imagestore/javascript/} and run: 
+
+\framebox{\parbox{\linewidth-2}{\itshape% 
+node enrollAdmin.js
+}}
+
+\framebox{\parbox{\linewidth-2}{\itshape% 
+node registerUser.js
+}}
+
+
+\subsection{Running the Web Application}
+
+The web application is located under {\fontfamily{ccr}\selectfont /imagestore/frontnend}, cd into this folder and do : 
+\framebox{\parbox{\linewidth-2}{\itshape% 
+npm install
+}}
+\framebox{\parbox{\linewidth-2}{\itshape% 
+npm start
+}}
+
+\subsection{Fabric Explorer}
+Fabric Explorer is optional. To install it you can use the following link and it offers a number of options: 
+
+\framebox{\parbox{\linewidth-2}{\itshape% 
+https://github.com/hyperledger/blockchain-explorer
+}}
+
+We recommend installing it using docker. The Fabric Explorer container comes automatically when binaries are installed . First of all it assumes the Fabric network is already running. Under the root directory of the source of this project there is a folder named {\fontfamily{ccr}\selectfont Fabricexplorer} which holds the necessary files to make Explorer running. The file that should be updated is the {\fontfamily{ccr}\selectfont connection-profile/test-network.json}. In this file the {\fontfamily{ccr}\selectfont adminPrivateKey} has to be updated with the newly generated private key with location in Hyperledger Fabric: 
+
+
+
+\framebox{\parbox{\linewidth-2}{\itshape% 
+/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore
+}}
+
+
 
 \chapter{Contents of the CD}
 The CD contains the following:
 
 \begin{itemize}
     \item a folder with the Arduino source code
-    \item a folder for the docker setup
-    \item a folder with the grc (gnuradio companion) files
-    \item a folder with various signal recordings
+    \item a folder with the Arduino Libraries
+    \item a folder for Hyperledger Fabric
+    \item a folder with Web Application
+    \item a folder with R Code
+    \item a folder with Fabric Explorer
     \item a folder with the thesis source code and the final thesis pdf
-    \item a folder with various tools for decoding, encoding and visualization of LoRa signals
-    \item a README.md file
+ 
 \end{itemize}
 
-\emph{All contents of the CD are available online on my GitHuB \url{https://github.com/mustard123/master-thesis}}
+\emph{All contents of the CD are available online on my GitHuB \url{https://github.com/eesati/Master-thesis}}
 
 
-\chapter{README.md}
-Below is the README.md file converted to \LaTeX. It is
-recommended to view the file in a markdown viewer e.g. VS Code or on GitHub \url{https://github.com/mustard123/master-thesis}
 
-\input{readme.tex}
 
-\end{comment}
+%\input{readme.tex}
+
