@@ -4,14 +4,14 @@
 In this section we are going to provide and introduce the most recent projects and research that shed light on the integration of the three domains. Additionaly we are going to see some similar use cases of real time face detection and recognition for access control. Convergence of the three domains is not by chance therefore in this section we explore the ideas and benefits that bring the three domains together. 
 %The ESP EYE development board  provides the basis and the motivation to put more effort on this project. It supports image transmission via Wi-Fi and debugging through a Micro-USB port. 
 
-\section{Synergy of the trio: IoT, AI and Blockchain }
+\section{Synergy of the trio: Internet of Things, Artificial Intelligence and Blockchain }
 
-In order to give a better understanding of IoT, AI and blockchain, it mirrors to think of them as an interconnected biological process. IoT is like our brain, which senses billions of connected devices in our planet while producing a universe of new data. AI being the rationale part of the brain, it will be thinking while analyzing data and make a decision based on that. On the other hand blockchain resembles memory which stores information in the growing list of blocks.
-\subsection{An overview of IoT}
+In order to give a better understanding of Internet of Things (IoT), Artificial Intelligence (AI) and Blockchain (BC), it mirrors to think of them as an interconnected biological process. IoT is like our brain, which senses billions of connected devices in our planet while producing a universe of new data. AI being the rationale part of the brain, it will be thinking while analyzing data and make a decision based on that. On the other hand BC resembles memory which stores information in the growing list of blocks.
+\subsection{An overview of Internet of Things}
 
 IoT is transforming the world of things around us into a world of sensors that speak about the things. Practically almost anything can be equipped with a sensor and make the things smart. In terms of IoT the sensors are not just used to detect and measure but they are also used to respond to changes thanks to the proliferation of internet-enabled devices which are embedded with computational power. 
 
-The number of IoT devices took over the population worldwide since 2008. Based on \cite{ITU} the number of IoT devices is expected to increase and reach around 31 billion by the end of 2020. However this number is not expected to ever stop but it may double by the end of 2025 \cite{soton421529} as depicted in Figure~\ref{fig:num_of_iot} .
+The number of IoT devices took over the population worldwide since 2008. Based on \cite{ITU} the number of IoT devices is expected to increase and reach around 31 billion by the end of 2020. However, this number is not expected to ever stop but it may double by the end of 2025 \cite{soton421529} as depicted in Figure~\ref{fig:num_of_iot} .
 
 Most IoT devices run on microcontrollers or microprocessors with very minimal processing power which makes them less powered than a smartphone. The reason behind is not that such devices cannot be equipped with more processing power but to be energy efficient and run with minimal power on battery and reducing environmental impacts of the energy use. With such growing number of IoT devices in the near future it could eventually pose a challenge even without increasing the processing power of such devices. Eventually there could be a high demand of developing a green communication across the network \cite{7057878}. This at some point may affect the developers of IoT devices who have to find more lightweight programs to run AI algorithms. As a result different algorithmic approaches are taking place and more efficient algorithms are being developed \cite{8057306}.
 
@@ -31,16 +31,16 @@ Most IoT devices run on microcontrollers or microprocessors with very minimal pr
 We would like to mention a number of common characteristics that most IoT devices share: 
 
 \begin{itemize}
-    \item Connectivity - with the help of a number of protocols they can communicate with each other.
+    \item Connectivity:  with the help of a number of protocols they can communicate with each other.
     \item Heterogeneity: a variety of devices and objects including communication protocols
     \item Unique identity: a unique identifier for each device 
-    \item Big data: IoT number one source of big data 
+    \item Big data: IoT as number one source of big data 
 \end{itemize}
 
 However IoT suffers from its typical architecture design which is the centralized architecture. Servers either on the cloud or on premise manage and deal with all requests coming from various nodes. This architecture comes with multiple challenges: scalability issues, security and privacy challenges and issues with the analysis of big data \cite{8627114}. 
 
-\subsection{Enabling Deep Learning in IoT}
-AI has become a buzzword and one of the topics that has a significant impact on many different domains. Figure~\ref{fig:ai_terms} depicts the relationship between Artificial Intelligence, Machine Learning and Deep Learning. Machine learning is the technique used to allow computer programs to access data and use it to automatically learn and improve from experience. Whereas neural network involves a large number of processors operating in parallel arranged in tiers in the same way neurons in our brain works. While deep learning employees neural networks but with many layers of neural networks. 
+\subsection{Enabling Deep Learning in Internet of Things}
+AI has become a buzzword and one of the topics that has a significant impact on many different domains. Figure~\ref{fig:ai_terms} depicts the relationship between Artificial Intelligence, Machine Learning and Deep Learning. Machine learning is the technique used to allow computer programs to access data and use it to automatically learn and improve from experience. Whereas neural network involves a large number of processors operating in parallel arranged in tiers in the same way neurons work in our brain. Deep learning employees neural networks but with many layers of neural networks. 
 
 
 \begin{figure}[!htb]
@@ -49,23 +49,23 @@ AI has become a buzzword and one of the topics that has a significant impact on 
     \caption{Relationship of AI terms \cite{AiMachine}.}
     \label{fig:ai_terms}
 \end{figure}
-We already know that AI can solve and make sense of the immense amount of data produced from IoT devices. However the main question for research appears “How to deploy neural networks directly on these tiny devices? Therefore there is an opportunity and challenge at the same time to run machine learning on such tiny IoT devices based on microcontrollers. By running machine learning on these tiny devices, we can directly perform real time data analytics in the device itself, therefore avoiding the need to store all the data generated from the IoT device. Typically commercial use cases of smart IoT devices often offload the Artificial Intelligence part to the cloud. 
+It is known that AI can solve and make sense of the immense amount of data produced from IoT devices. However, the main question for research appears: How to deploy neural networks directly on these tiny devices. Therefore, there is an opportunity and challenge at the same time to run machine learning on such tiny IoT devices based on microcontrollers. By running machine learning on these tiny devices, we can directly perform real time data analytics in the device itself, therefore there is no need to store all the data generated from the IoT devices. Typically commercial use cases of smart IoT devices often offload AI part to the cloud. 
 One of the most recent study \cite{8057306} that worked on this direction tested two approaches with deep learning: 
 \begin{itemize}
-    \item Offloading deep learning platforms to the cloud
-    \item Migrating deep learning in an IoT device
+    \item Offloading deep learning platforms to the cloud;
+    \item Migrating deep learning in an IoT device;
 \end{itemize}
 
 The two approaches were tested and look from the perspective of whether offloading machine learning can reduce energy efficiency and satisfy the real time requirements of object recognition. 
-In the first approach they used convolutional neural networks on the cloud, while the Jetson TX1 was responsible to just take images and forward them to the cloud. The results show that executing machine learning in the Jetson TX1 consumed more energy compared to offloading it on the cloud. However offloading AI to the cloud also comes with drawbacks which has lead to a range of latency starting from 2 seconds that goes up to 5 seconds which is far higher compare to the execution of AI in the Jetson TX1 itself. This infers that the variability of response time make it quite unreliable and not useful for real time AI processing. 
+In the first approach they used convolutional neural networks on the cloud, while the Jetson TX1 was responsible to just take images and forward them to the cloud. The results show that executing machine learning in the Jetson TX1 consumed more energy compared to offloading it on the cloud. However, offloading AI to the cloud also comes with drawbacks which has lead to a latency starting from 2 seconds that goes up to 5 seconds which is far higher compare to the execution of AI in the Jetson TX1 itself. This infers that the variability of response time makes it quite unreliable and not useful for real time AI processing. 
 
 Furthermore MIT researchers \cite{mit123} have implemented a system called MCUNet, which has a high potential to bring deep learning in much smaller devices like tiny computer chips despite their limited memory and computational power. 
 
-\subsection{Intersection of Blockchain and AI}
+\subsection{Intersection of Blockchain and Artificial Intelligence}
 
-There is a high research on Blockchain and AI but analysed in isolation and in various domains and applications. Some research \cite{8481263} focus on the application of AI in the Blockchain for making blockchain more efficient for instance, consensus mechanisms and better governance. However there seem to be more research and applications of Blockchain in AI. Similar to IoT, AI domain also suffers from security, its centralized architecture and resource limitations. This is exactly what blockchain is looking to solve. There is a lot of discussion and research in this area, however most of them are reviews and solutions that do not come up with a use case or implement such solutions. In order to have a global image the Table \ref{crouch} describes the features of the two technologies and the benefits of integrating such features.
+There is a high research on BC and AI but analysed in isolation and in various domains and applications. Some research \cite{8481263} focus on the application of AI in the BC for making BC more efficient for instance, consensus mechanisms and better governance. However there seem to be more research and applications of BC in AI. Similar to IoT, AI domain also suffers from security, its centralized architecture and resource limitations. This is exactly what blockchain is looking to solve. There is a lot of discussion and research in this area, however most of them are reviews and solutions that do not come up with a use case or implement such solutions. In order to have a global image the Table \ref{crouch} describes the features of the two technologies and the benefits of integrating such features.
 
-There is another interesting contribution \cite{8884985} that came up with an AI blockchain platform to fight the propagation of fake news. This platform allows publishers to setup a distribution platform in the blockchain while AI monitors the actors who publish news to the blockchain. Expectation is that the blockchain serves as the "factual database" to trace back the news. So the news which cannot be traced back to the blockchain is considered fake news. 
+There is another interesting contribution \cite{8884985} that came up with an AI blockchain platform to fight the propagation of fake news. This platform allows publishers to setup a distribution platform in BC while AI monitors the actors who publish news to BC. Expectation is that BC serves as the "factual database" to trace back the news. So the news which cannot be traced back to the blockchain is considered fake news. 
 
 
 
@@ -100,7 +100,7 @@ Changing
     \label{crouch}
 \end{table}
 
-\subsection{Integration of Blockchain with IoT}
+\subsection{Integration of Blockchain with Internet of Things}
 
 We have already listed a number of issues that IoT world is facing, which mainly are the centraized architecture, security and privacy. For instance \cite{inbook223ris} attempted to discover the security gaps that could be mitigated with the help of blockchain to ensure the reliability and availability of the data.
 
@@ -141,13 +141,13 @@ Other studies \cite{8598784} attempted to integrate crypto based blockchains suc
  
  
  
- \section{Use cases on AI, IoT and BC}
+ \section{Use cases on Artificial Intelligence, Internet of Things and Blockchain}
  
- We have already described the intersections on how BC, AI and IoT accommodate each other in pair, however there is a very high potential for the usage of all the three domains in one use case. With such a high number of IoT devices there is a potential to take the advantage of AI and BC at the same time. Based on \cite{oracle}, every institution  which takes the advantage of exploiting these technologies has the chance to radically enhance their existing processes and create entirely new business models. 
+ We have already described the intersections on how BC, AI and IoT accommodate each other in pair, however there is a very high potential for the usage of all the three domains in one use case. With such a high number of IoT devices there is a potential to take the advantage of AI and BC at the same time. In another article (Kurian 2020)\cite{oracle}, stated that every institution  which takes the advantage of exploiting these technologies has the chance to radically enhance their existing processes and create entirely new business models. 
  
 An interesting work \cite{smartcity}  presents how the collaboration of the three domains can build a sustainable smart city. Given the many issues people in urban areas face, the concept of the sustainable smart city brings new opportunities for the application. With their new approach they aim to have a transparent monitoring system for measuring pollution which in turn helps to raise awareness to the population. 
 
-In another use case \cite{refhomeauto} the authors propose an IoT based home automation and surveillance system. In this setup they have employed a raspberry pi, a camera attached to it and a DC motor for controlling the door. The video surveillance is not detecting or recognizing people, so the burden falls into the owner who through the help of an application is able to open the door. Therefore compare to our solution there is no AI and blockchain integrated in their architecture. 
+In another use case \cite{refhomeauto} the authors propose an IoT based home automation and surveillance system. In this setup they have employed a raspberry pi, a camera attached to it and a DC motor for controlling the door. The video surveillance is not detecting or recognizing people, so the burden falls into the owner who through the help of an application is able to open the door. Compared to our solution there is no AI and BC integrated in their architecture. 
 
 
 A use case that pretty much is matching with our use case is the design and implementation of a camera based sensor for room capacity monitoring. The aim of it is to count the number of people present in a room with the help of a raspberry pi and a camera. In Figure~\ref{fig:raum} we can see the architectural overview. 
@@ -159,7 +159,7 @@ A use case that pretty much is matching with our use case is the design and impl
     \label{fig:raum}
 \end{figure}
 
-Their architecture employees AI and IoT. The use case was designed and implemented by a group of students at FHNWS \footnote[1]{Fachhochschule Nordwestschweiz} who employed a raspberry pi equipped with camera and lora gateway. The role of camera is to take pictures and after that a machine learning algorithm analyzes the image and finds the number of people in the room. Once done the data is then send to a LoraWan Server. To achieve that, they have attached a LoraWan antenna to the RPI and eventually with a web application they can monitor the room. So face detection happens in the RPI, the algorithm counts the number of people in the image and sends it to the Lorawan Backend Server. From here we can conclude that the issue of centralisation is still open, data is being stored in a database, security issues are not tackled enough. Besides there is also the need for a RPI to be placed in a room as the camera is attached to it and that needs power to run. 
+Their architecture employees AI and IoT. The use case was designed and implemented by a group of students at FHNWS \footnote[1]{Fachhochschule Nordwestschweiz} who employed a raspberry pi equipped with camera and lora gateway. The role of camera is to take pictures and after that a machine learning algorithm analyzes the image and finds the number of people in the room. Once done the data is then send to a LoraWan Server. To achieve that, they have attached a LoraWan antenna to the RPI and eventually with a web application they can monitor the room. In this case face detection happens in the RPI, the algorithm counts the number of people in the image and sends it to the Lorawan Backend Server. From here we can conclude that the issue of centralisation is still open, data is being stored in a database, security issues are not tackled enough. Besides there is also the need for a RPI to be placed in a room as the camera is attached to it and that needs power to run. 
 
 With our proposed architecture we are not only automating the IoT-based surveillance system but provide a robust solution that will take care of the leaks that AI and BC can neutralize. 
 
@@ -167,14 +167,14 @@ With our proposed architecture we are not only automating the IoT-based surveill
 \chapter{Face Detection and Recognition in Esp Eye}
 \label{chap:face_detection}
 \section{Background of real time face recognition in low powered IoT devices}
-Monitoring and tracking people and their activities with the current approaches of the surveillance system normally generate enormous amount of data coming from Internet of Things devices. This leads to a number of issues that need to be treated well, data migration from camera over a limited bandwidth for face detection and recognition leads to high latency and the camera need to be placed near the electrical plug as they require a lot of power. Therefore this approach leads to generating a lot of data while transferring it to a different source for face detection and recognition. Besides many public places use surveillance camera for video capture based on motion detection, which means that once someone approaches near the camera it then starts recording and throughout the day you can imagine how much volume of data can be generated. 
+Monitoring and tracking people and their activities with the current approaches of the surveillance system normally generates enormous amount of data coming from IoT devices. This leads to a number of issues that need to be treated well for example data migration from camera over a limited bandwidth for face detection and recognition leads to high latency and the camera need to be placed near the electrical plug as they require fairly high power. Therefore this approach leads to generating a lot of data while transferring it to a different source for face detection and recognition. Besides many public places use surveillance camera for video capture based on motion detection, which means that once someone approaches near the camera it then starts recording and throughout the day high volume of data can be generated. 
 This chapter provides a guidance to the existing algorithms for face detection and recognition and then explores the algorithms that are implemented for the resource constraint devices. Hence we also discuss the reasons behind choosing to deploy the face detection and recognition algorithm in the Esp Eye itself. In addition MTCNN and FRMN for face detection and recognition are described in detail. 
 
 
 \subsection{The generic framework for face detection and recognition}
 
 
-Face detection is normally the first step towards face recognition or verification as it can be seen in  Figure~\ref{fig:framework}. Basically the framework follows a two step process: face image detection and face recognizer. In the first process an image is taken from the camera then the algorithm localizes the face from the background image. This process happens continuously which means if there is no face detected then it captures the next image and does the same. When no face is detected the image is deleted from memory. The next process assumes the image is taken and a face has been detected then the face recognition starts. In this phase another algorithm takes place in order to determine who are the persons in that image. During both processes, algorithms extract features or patterns which is the key step of the algorithm. Feature extraction is essential for localizing facial components such as mouth, nose, eye and others. 
+Face detection is normally the first step towards face recognition or verification as it can be seen in  Figure~\ref{fig:framework}. Basically the framework follows a two step process: face image detection and face recognizer. In the first process an image is taken from the camera then the algorithm localizes the face from the background image. This process happens continuously, which means if there is no face detected then it captures the next image and it does the same. When no face is detected the image is deleted from memory. The next process assumes the image is taken and a face has been detected then the face recognition starts. In this phase another algorithm takes place in order to determine who are the individuals in that image. During both processes algorithms extract features or patterns, which is the key step of the algorithm. Feature extraction is essential for localizing facial components such as mouth, nose, eye and others. 
 
 \begin{figure}[!htb]
     \centering
@@ -186,31 +186,30 @@ Face detection is normally the first step towards face recognition or verificati
 
 \subsection{Existing  algorithms  for  face detection and recognition}
 
-There are a number of algorithms that have been developed and now used to tackle the face detection and recognition issues. We would like to mention a number of successful algorithms which are widely used and they are: 
+There are a number of algorithms that have been developed and now used to tackle the face detection and recognition issues. A number of successful algorithms which are widely used are listed below: 
 
 \begin{itemize}
-    \item \textbf{Principle Component Analysis (PCA).} It is a statistical approach and one of the simplest in face recognition systems. In this approach images with detected faces are transformed into eigenfaces. Eigenface is a method that determines the variance of faces from a collection of images. The main idea behind is to linearly project images onto a lower dimensional images. 
+    \item \textbf{Principle Component Analysis (PCA)}: The PCA is a statistical approach and is known as one of the simplest face recognition systems. In this approach images with detected faces are transformed into eigenfaces. Eigenface is a method that determines the variance of faces from a collection of images. The main idea behind is to linearly project images onto a lower dimensional images. 
     
     
-    \item \textbf{Linear Discriminant Analysis (LDA).}
-   It is a method used in pattern recognition and machine learning by finding a linear combination of features. It used for dimensionality reduction and performs very well in face recognition. It finds a projection transformation by maximizing the between-class distance and minimizing the within-class distance. 
+    \item \textbf{Linear Discriminant Analysis (LDA)}: The LDA is a method used in pattern recognition and machine learning by finding a linear combination of features. It is used for dimensionality reduction and performs very well in face recognition. It finds a projection transformation by maximizing the between-class distance and minimizing the within-class distance. 
    
    
    
-    \item \textbf{Skin colour based algorithm.}
-    As the name says, it uses skin color as a feature for face detection and it is fast, self adaptive algorithm. From the input image it uses color space for the skin region. A bounding box is drawn to extract the face from the image.
+    \item \textbf{Skin colour based algorithm}:
+    As the name says, it uses skin color as a feature for face detection and it is fast, self adaptive algorithm. A bounding box is drawn to extract the face from the image.
     
     
-    \item \textbf{Wavelet based algorithm}
+    \item \textbf{Wavelet based algorithm}:
     In this method the image is cut up into a subset of frequency components and to each component is applied a mathematical function. One of the widely known algorithm is the Gabor wavelet.
-    \item \textbf{Artificial  neural  networks  based  algorithm}
-    Typically face recognition is achieved with the help of deep learning more specifically the Convolutional Neural Network. Through a multi-layered network it performs a specific task using classification.
+    \item \textbf{Artificial  neural  networks  based  algorithm}: 
+    Typically face recognition is achieved with the help of deep learning more specifically with Convolutional Neural Network. Through a multi-layered network it performs a specific task using classification.
 \end{itemize}
 
 
 \subsection{Hardware requirements for running real time face recognition}
 
-It is important to mention that a typical computer or a laptop possess an AMD processor, while a raspberry pi and smart phones and some other devices like watches are equipped with an ARM processor. Obviously ARM architecture offers lower performance compare to AMD, but there is a reason behind, the ARM processors consume less power than AMD processors. Performing real time recognition on both AMD and ARM is not an issue, both can handle them. However both processors need power either plugged or if on battery they can last max one day long. In contrast the low powered IoT devices can run for years with a typical voltage of 3.6 V. Therefore to our knowledge so far it is not possible to perform real time recognition with a processor other then the above mentioned. 
+It is important to mention that a typical computer or a laptop possess an AMD processor, while a raspberry pi and smart phones and some other devices like watches are equipped with an ARM processor. Obviously ARM architecture offers lower performance compared to AMD, but there is a reason behind, the ARM processors consume less power than AMD processors. Performing real time recognition in both AMD and ARM is not an issue, both of them can handle but with different approaches. However both processors need power either plugged or if on battery they can last max one day long. In contrast the low powered IoT devices can run for years with a typical voltage of 3.6 volts. Therefore to our knowledge so far it is not possible to perform real time recognition with a processor other then the above mentioned. 
 
 Esp Eye is the first device to perform real time face recognition. However, this does not mean that the same face detection and recognition algorithms for computers have been used here. Esp Eye is one of its kind that comes with ESP WHO \cite{esp-who} platform which supports both face detection and face recognition. The ESP EYE \cite{espeye} is equipped with Tensilica LX6 dual core processor. To our knowledge this is the only device that can perform real time face recognition in a microprocessor that lies out of the two classes AMD and ARM processors. 
 
@@ -224,7 +223,7 @@ MTMN refers to both MTCNN (Multi-task Cascaded Convolutional Networks) and Mobil
 MTCNN is one of the state of the art approaches which is described and published in the paper "Joint Face Detection and Alignment Using Multitask Cascaded Convolutional Networks" \cite{refmtcnn} in 2016. MTCNN is popular because it has achieved 95 percent accuracy on a range of banchmark datasets. MTCNN is a novel approach because it performs a lightweight Convolutional Neural Network based framework which actually performs simultaneously face detection and alignment whereas in other CNN-based frameworks face detection and alignment are two distinct processes.   
 Due to its lightweight CNN architecture it can perform in real time which is possible to deploy it in an ESP32 chip. 
 
-The process consists of three stages of Convolutional Neural Networks that are able to detect faces and landmark location such as eyes, nose, and mouth : 
+The process consists of three stages of Convolutional Neural Networks that are able to detect faces and landmark location such as eyes, nose, and mouth: 
 
 \begin{itemize}
     \item \textbf{P-net} 
@@ -234,7 +233,7 @@ The process consists of three stages of Convolutional Neural Networks that are a
 
 
 The Figure~\ref{fig:mtcnn} adapted from their original paper depicts a summary of the three layers with the output of each layer on the right side. The three mentioned models perform independent of each other, the output of each is used as an input of another. 
-First of all once the image is captured it is then scaled into multiple different sizes based on different scaling ratios which forms a collection of images called Image Pyramid similarly as in Figure~\ref{fig:pyramid}. This allows the model to learn different image scales effectively. This type of image processing is used extensively because it makes it easier to detect faces no matter how far or close they stand in the image.
+First of all once the image is captured it is then scaled into multiple different sizes based on different scaling ratios, which forms a collection of images called "Image Pyramid" similarly as in Figure~\ref{fig:pyramid}. This allows the model to learn different image scales effectively. This type of image processing is used extensively because it makes it easier to detect faces no matter how far or close they stand in the image.
 
 
 \begin{figure}[!htb]
@@ -253,12 +252,12 @@ First of all once the image is captured it is then scaled into multiple differen
 
 \subsubsection{Proposal Network or P-net}
 
-The first stage of Proposal network (P-Net) as depicted in Figure~\ref{fig:3stages} is a full convolutional neural network which extracts face candidate regions from images at various scales and bounding box regression vectors. Bounding-box regression is a technique for refining or localizing boxes in objects. In other words it is a rectangle which is drawn over the image to emphasize the face. For each of the scaled image that reside in the image pyramid it runs a 12x12 kernel which starts in the top left corner or at these coordinates (0,0) to (12,12). This portion of the image 12x12x3 is the input for P-Net as it can be seen in Figure~\ref{fig:3stages}. To this image then is run another kernel of size 3x3 and then it produces feature map or smaller images depending on the stride. For example in the first filtering it produces feature maps of size 5x5. The stride is the number of jumps or pixels that the kernel moves to apply a filter. In order to deliver a 5x5x10 from 12x12x3 with a kernel 3x3 the stride is 2. Therefore stride plays a role in time complexity of the algorithm, the lower the stride the higher the time complexity. From this 12x12 portion of a scaled image from pyramid the P-net outputs the coordinates of a bounding box if there is a face. Before releasing the last output bounding box coordinates a number of similar boxes are filtered out with lower confidence or score and only the ones with higher confidence are kept. The bounding boxes left may still overlap as in Figure~\ref{fig:non-max}, therefore we need the one that perfectly covers the face. To do that the non-max suppression technique is applied which reduces the number of boxes by taking the best fit and not the one the network is more confident in. 
+The first stage of Proposal network (P-Net) as depicted in Figure~\ref{fig:3stages} is a full convolutional neural network which extracts face candidate regions from images at various scales and bounding box regression vectors. Bounding-box regression is a technique for refining or localizing boxes in objects. In other words it is a rectangle, which is drawn over the image to emphasize the face. For each of the scaled image that reside in the image pyramid it runs a 12x12 kernel which starts in the top left corner or at these coordinates (0,0) and (12,12). This portion of the image 12x12x3 is the input for P-Net as it can be seen in Figure~\ref{fig:3stages}. Furthermore, another kernel of size 3x3 is applied to this image  and then it produces feature map or smaller images depending on the stride. For example in the first filtering it produces feature maps of size 5x5. The stride is the number of jumps or pixels that the kernel moves to apply a filter. In order to deliver a 5x5x10 from 12x12x3 with a kernel 3x3 the stride is 2. Therefore stride plays a role in time complexity of the algorithm, the lower the stride the higher the time complexity. From this 12x12 portion of a scaled image from pyramid the P-net outputs the coordinates of a bounding box in case there is a face. Before releasing the last bounding box coordinates a number of similar boxes are filtered out with lower confidence or score and only the ones with higher confidence are kept. The bounding boxes left may still overlap as in Figure~\ref{fig:non-max}, therefore we need the one that perfectly covers the face. To do that the non-max suppression technique is applied which reduces the number of boxes by taking the best fit and not the one the network is more confident in. 
 
 
 
 
-The aim of the this network is to check whether there is a face in the input and outputs the face frame or box with the four coordinates. In the face classification the network outputs the probability of being a face and not being a face and both values add up to 1. The bounding box holds the exact position of the box with coordinates. 
+The aim of the this network is to check whether there is a face in the input and if there is it outputs the face frame or box with the four coordinates. In the face classification the network outputs the probability of being a face and not being a face and both values add up to 1. The bounding box holds the exact position of the box with coordinates. 
 
 
 \begin{figure}[!htb]
@@ -278,13 +277,13 @@ The aim of the this network is to check whether there is a face in the input and
 \subsubsection{Refine Network or R-net}
 
 The structure of R-net can be seen in the Figure~\ref{fig:3stages} which looks pretty much the same as R-net. R-net is a rough prediction of faces therefore there are a number of false positives so the aim of R-net is refinement of the bounding boxes and reduce the number of false positives.
-The input of this stage is the bounding box generated by P-net which can be of different sizes. From the Figure~\ref{fig:3stages} we can see that the input size is of dimensions 24x24x3. So regardless of the size of the bounding box it still needs to be scaled to the expected input size before sending to R-Net. Therefore the bounding boxes is scaled to 24 x 24 pixels and can be fed to R-Net. Once again the same as in P-net happens, get rid of boxes with low confidence and apply the NMS on every survived box. The output is the same as of that of P-net which also consists of three parts: probability of being a face or not, square frames and the position of landmarks. This stage can help to recover the weaknesses of P-net and improve accuracy by reducing the number of false positives. 
+The input of this stage is the bounding box generated by P-net which can be of different sizes. From the Figure~\ref{fig:3stages} we can see that the input size is of dimensions 24x24x3. So regardless of the size of the bounding box it still needs to be scaled to the expected input size before sending to R-Net. Therefore the bounding boxes is scaled to 24 x 24 pixels and can be fed to R-Net. Once again the same as in P-net , it filters out boxes with low confidence and applies the NMS on every survived box. The output is the same as of that of P-net which also consists of three parts: probability of being a face or not, square frames and the position of landmarks. This stage can help to recover the weaknesses of P-net and improve accuracy by reducing the number of false positives. 
 
 
 \subsubsection{Output Network or O-Net}
 
-In the Output Network almost the same happens as in R-Net with some changes in middle layer where additional channels are added which means accuracy is also increasing. The input, feature maps are getting higher and higher in terms of pixels. The accuracy rate is expected to be higher which is proportional to the increased time complexity. In this case the output of R-Net serves as the input of this stage but scaled to 48x48x3. 
-Now we can already see the reason behind using three neural networks and not one. Since the final decision is received from O-Net we can directly use it and avoid the previous two networks. But the speed will be very slow since O-Net has to do a lot of operation on all candidate windows which can be very high. With the help of P-net and R-Net a lot of non relevant windows will be filtered out from the start. From P-Net to R-Net a lot filtering happens, so the advantage here is to perform fine grained face detection only on highly probable candidate windows. To make the story short here is a summary of the whole face detection process: 
+In the Output Network almost the same happens as in R-Net with some changes in middle layer, where additional channels are added and accuracy is increasing. The accuracy rate is expected to be higher which is proportional to the increased time complexity. In this case the output of R-Net serves as the input of this stage but scaled to 48x48x3. 
+Now we can already see the reason behind using three neural networks and not one. Since the final decision is received from O-Net we can directly use it and avoid the previous two networks. But the speed will be very slow since O-Net has to do a lot of operation on all candidate windows which can be very high. With the help of P-net and R-Net a lot of non relevant windows will be filtered out from the start. From P-Net to R-Net a lot filtering happens, so the advantage here is to perform fine grained face detection only on highly probable candidate windows. A summary of the whole face detection process is as follows: 
  
  P-Net:
 \begin{enumerate}
@@ -314,7 +313,7 @@ Now we can already see the reason behind using three neural networks and not one
 
 MobileNet is a CNN architecture developed by researchers at Google which is proven to build light-weight deep neural networks which uses less computational power to run. This architecture allows to run face detection and recognition for IoT devices, Mobile devices and computers with low computational efficiency without compromising the accuracy of the results. MobilNet version 2 is the recent version which comes with a research paper published in late 2018 as a refinement of the MobileNet version 1 which make it even more powerful. 
 
-In order to understand why this model is being used and at which step in face detection is used we would like to first give a quick recall on how convolutional neural network works. CNN is composed of neural networks as in Figure~\ref{fig:3stages} which in our case receives an image  and transform it through a series of hidden layers. Each hidden layer is made up of a number of neurons which are nothing else but mathematical functions and in terminology it is called activation function which calculates the weighted sum of multiple pixels and decides whether or not to send a signal to the next neuron. The activation function takes the weighted sum of all inputs plus the bias.
+In order to understand why this model is being used and at which step in face detection is used we would like to first give a quick recall on how convolutional neural network works. CNN is composed of neural networks as in Figure~\ref{fig:3stages} which in our case receives an image  and transforms it through a series of hidden layers. Each hidden layer is made up of a number of neurons which are nothing else but mathematical functions and in terminology it is called activation function which calculates the weighted sum of multiple pixels and decides whether or not to send a signal to the next neuron. The activation function takes the weighted sum of all inputs plus the bias.
 
 Before reaching the next neuron, a convolution or a filter is applied to the input image and a feature map is created from it. We can see in P-net in the first layer there are 10 feature maps created with a size of 5x5. That means a convolutional filter is applied 10 times to the input image and the size of the kernel in our case is 3x3. But this does not mean that the same filter is applied but different ones as in Figure~\ref{fig:filter}. This kernel slides across all the pixels of the input image by covering all of them and at each step it computes the weighted sum and puts in the feature map as in Figure~\ref{fig:conv}. Depending on the size of the kernel and input image the new feature map may have a smaller size. Here is where pooling comes into play, with pooling we can upsample or downsample or change the spatial dimensions but in fact only max-pooling is performed because there it needs to detect outliers which is the moment the network can detect features. So the deeper it goes in the image the better to detect features. When the output of the P-net is generated which is an image or candidate window it has to be upsampled because R-Net only receives image of dimensions 24x24x3. This means it zooms in the image more and more until the last network is performed. Besides it can be seen that the number of filters is increasing and in the last layer of O-Net it generates a feature map of dimensions 3x3x128 which means 128 filters have been applied. 
 \begin{figure}[!htb]
@@ -331,7 +330,7 @@ Before reaching the next neuron, a convolution or a filter is applied to the inp
     \caption{Examples of filters \cite{simpleconvolution}.}
     \label{fig:filter}
 \end{figure}
-From here we can understand the reason behind the staging. Performing the convolution to the image directly from the last stage would need a lot of computation because filtering takes processing time. Imagine having an image where the person to be detected is standing far away and in the image that person may cover for example only 5x5 pixels out of an image of 360x240. So applying a high number of filters in each extracted image with 5x5 pixels is not efficient. So the idea is to first apply filtering in larger parts of the image so that we can get rid of candidate windows which do not include faces.
+From here we can understand the reason behind the staging. Performing the convolution to the image directly from the last stage would need a lot of computations because filtering takes processing time. For instance if the person to be detected is standing far away and in the image that person may cover for example only 5x5 pixels out of an image of 360x240. So applying a high number of filters in each extracted image with 5x5 pixels is not efficient. Hence it is better to first apply filtering in larger parts of the image so that we can get rid of candidate windows which do not include faces.
 
 The staging approach is quite efficient in face detection while MobileNets is essential in the way convolution is performed in applying the filters and creating feature maps. 
 
@@ -369,25 +368,25 @@ With depthwise convolution instead of applying one kernel with 3 channels it app
 \end{figure}
 
 \subsubsection{Pointwise convolution}
-As of now we have transformed the image into 8x8x3 but if we want to increase the number of channels to 256 as in normal convolution above we apply a pointwise convolution. As the name says pointwise convolution applies a kernel of size 1x1x3. At this step we come back again to normal convolution, so now it applies the kernel to the image 8x8x3 as in Figure~\ref{fig:depthconv} and combine it to form one channel image with output a 8x8x1. To get 256 channels we apply the same kernel 256 times. Now we have the same feature map as in normal convolution above but with less number of computations. 
+As of now we have transformed the image into 8x8x3 but if we want to increase the number of channels to 256 as in normal convolution above we apply a pointwise convolution. As the name says pointwise convolution applies a kernel of size 1x1x3. At this step we come back again to normal convolution, so now it applies the kernel to the image 8x8x3 as in Figure~\ref{fig:depthconv} and combine it to form one channel image with output of size 8x8x1. To get 256 channels we apply the same kernel 256 times. Now we have the same feature map as in normal convolution above but with less number of computations. 
 
 Here is a simple calculation of both approaches, normal convolution and MobileNet approach. 
-Assuming we have an input image of size 12x12x3 and the kernel is of size 5x5 and stride 1, with these parameters we get an image of size 8x8.
-With normal convolution since the input image has 3 channels we apply the kernel 5x5x3 we get an output image of size 8x8x1. If we want an image with 126 channels, the total multiplications is 126x3x5x5x8x8=604800. With the MobileNets we have 126x1x1x3x8x8=24192. Hence with MobileNets the network performs faster.
+Assuming we have an input image of size 12x12x3 and the kernel is of size 5x5 and stride 1 with these parameters we get an image of size 8x8.
+With normal convolution since the input image has 3 channels we apply the kernel 5x5x3 and we get an output image of size 8x8x1. If we want an image with 126 channels, the total multiplications is 126x3x5x5x8x8=604800. With the MobileNets we have 126x1x1x3x8x8=24192. Hence with MobileNets the network performs faster.
 
 
 \section{Face Recognition Model Based on CNN}
 
-Face recognition is done using MobileFaceNet \cite{DBLP:journals/corr/HowardZCKWWAA17} which consists of MobileNetv2 \cite{DBLP:journals/corr/abs-1801-04381} and ArcFace algorithm. The output of face detection is the aligned face with human face coordinates: bounding box with image and landmarks. This output will be the input for face recognition. Only if human is detected with the above mentioned model then face recognition algorithm fires which then generates a Face ID. In order to verify who that person is, it first has to check if that person exist in the database. The next step is to compare the newly generated Face ID with the existing Face IDs. Most likely there may not be an exact match for Face IDs even if it is from the same person. So the idea is to obtain the distance between the Face IDs which is done by Euclidean distance. In order to determine if the Face ID is from the same person it compares the distance between the Face IDs based on allowed threshold. 
+Face recognition is done using MobileFaceNet \cite{DBLP:journals/corr/HowardZCKWWAA17} which consists of MobileNetv2 \cite{DBLP:journals/corr/abs-1801-04381} and ArcFace algorithm. The output of face detection is the aligned face with human face coordinates: bounding box as an image and landmarks. This output will be the input for face recognition. Only if human is detected with the above mentioned model then face recognition algorithm fires which then generates a Face ID. In order to verify who that person is, it first has to check if that person exist in the database. The next step is to compare the newly generated Face ID with the existing Face IDs. Most likely there may not be an exact match for Face IDs even if it is from the same person. Hence the idea is to obtain the distance between the Face IDs which is done by Euclidean distance. In order to determine if the Face ID is from the same person it compares the distance between the Face IDs based on allowed threshold. 
 
 \subsection{MobileFaceNet for face recognition using CNN}
 
-MobileFaceNet is one of state of the art approaches for face verification developed by the same authors who developed MobileNet \cite{howard2017mobilenets}. Regarding this approach they also published a paper. MobileFaceNet \cite{Chen2018MobileFaceNetsEC} is claimed to be one of the very efficient CNN model which addresses high-accuracy real-time face verification on embedded devices. Offline face verification is important on mobile devices because many applications equipped with face recognition need to run offline. 
+MobileFaceNet is one of state of the art approaches for face verification developed by the same authors who developed MobileNet \cite{howard2017mobilenets}. Regarding this approach they also published a paper. MobileFaceNet \cite{Chen2018MobileFaceNetsEC} is claimed to be one of the very efficient model which addresses high-accuracy for real-time face verification on embedded devices. Offline face verification is important on mobile devices because many applications equipped with face recognition need to run offline. 
 MobileFaceNets uses around one million parameters and can achieve a very high accuracy with 99.55 percent for face verification after being trained with ArcFace algorithm. The MobileFaceNet model takes the advantage of a global
 depthwise convolution layer rather than a global average pooling layer or a fully
 connected layer to output a discriminative feature 512-d vector. 
 
-Typically during face verification the models preprocess the images by extracting face features and eventually compare the new generated Face ID or vector with the already saved Face IDs by either comparing the similarities or the distance. Similarly MobileNetV2 is used here also for face feature embedding. The face verification process as seen in Figure~\ref{fig:face_ver} starts with MTCNN and then after a face is detected then the aligned face is created. The aligned face is the bounding box with the face detected of size 112x112 which is then used as an input for face recognition. The aligned face is then mapped to a feature vector. 
+Typically during face verification the models preprocess the images by extracting face features and eventually compare the new generated Face ID or vector with the already saved Face IDs by either comparing the similarities or the distance. Similarly MobileNetV2 is used here also for face feature embedding. The face verification process as seen in Figure~\ref{fig:face_ver} starts with MTCNN and then after a face is detected the aligned face is created. The aligned face is the bounding box with the face detected of size 112x112 which is then used as an input for face recognition. The aligned face is then mapped to a feature vector. 
 
 
 \begin{figure}[!htb]
@@ -397,7 +396,7 @@ Typically during face verification the models preprocess the images by extractin
     \label{fig:face_ver}
 \end{figure}
 
-The MobileNetv2 is used similarly as in face detection until the last feature mapis generated with size 7x7. At this step a Global Depthwise Convolution takes places, which uses a kernel of the same size as the input size. The output of this convolution is a 1x1xC while C being the number of channels. The reason behind using this approach in the last convolutional layer is that it reduces the last feature map to a vector. Which is then used as an identity for a person and the model uses it for facial recognition by computing the euclidean distance of this vector and other vectors. 
+The MobileNetv2 is used similarly as in face detection until the last feature maps generated with size 7x7. At this step a Global Depthwise Convolution takes places, which uses a kernel of the same size as the input size. The output of this convolution is a 1x1xC while C being the number of channels. The reason behind using this approach in the last convolutional layer is that it reduces the last feature map to a vector. Which is then used as an identity for a person and the model uses it for facial recognition by computing the euclidean distance of this vector and other vectors. 
 
 
 
@@ -410,30 +409,30 @@ The MobileNetv2 is used similarly as in face detection until the last feature ma
 
 
 \section{Hyperledger Fabric Introduction}
-Public blockchain as an immutable ledger allows for storing data in the form of transactions held by distributed network of untrusted peers and each peer can join or leave the network without any restrictions. In order to add information or create transactions normally peers ought to execute a consensus protocol which typically is a Proof of Work protocol in order to validate transactions. During this process  the peers compete for a mathematical task to be solved which require a lot of computational power, this happens everytime a new block is created. Bitcoin and Ethereum fall in this category which are considered to be public permissionless blockchains. This type of blockchain is great when transparency is required and data privacy is not a concern. 
-In addition due to the consensus algorithm in public blockchains the number of transactions mined is relatively low, for example Bitcoin has an average of 7 transactions per second which makes it quite slow and energy intensive. Considering the above conditions public blockchain does not offer the possibility for a wide range of use cases. Therefore many companies often chose private permissioned blockchain over the public blockchain because they: 
+Public Blockchain as an immutable ledger allows for storing data in the form of transactions held by distributed network of untrusted peers and each peer can join or leave the network without any restrictions. In order to add information or create transactions normally peers ought to execute a consensus protocol which typically is a Proof of Work protocol in order to validate transactions. During this process  the peers compete for a mathematical task to be solved which require a lot of computational power, this happens everytime a new block is created. Bitcoin and Ethereum fall in this category which are considered to be public permissionless Blockchains. This type of Blockchain is great when transparency is required and data privacy is not a concern. 
+In addition due to the consensus algorithm in public Blockchains the number of transactions mined is relatively low, for example Bitcoin has an average of 7 transactions per second which makes it quite slow and energy intensive. Considering the above conditions public Blockchain does not offer the possibility for a wide range of use cases. Therefore many companies often chose private permissioned Blockchain over the public Blockchain because they: 
 
 \begin{itemize}
-    \item concern about data privacy and confidentiality
-    \item need a customizable blockchain to implement their specific use cases
-    \item provide more control over the resources
-    \item do not involve cryptocurrencies and provide better throughput  
+    \item concern about data privacy and confidentiality;
+    \item need a customizable blockchain to implement their specific use cases;
+    \item provide more control over the resources;
+    \item do not involve cryptocurrencies and provide better throughput;
 \end{itemize}
 
-Having considered our use case of video surveillance access control with face detection and recognition we found Hyperledger Fabric more appropriate than any other private permissioned blockchain. 
-Hyperledger Fabric is an open source permissioned blockchain developed by Linux Foundation which has received contributions from IBM and some other companies. With its modular and configurable architecture it has become a standard for enterprise blockchain. 
+Having considered our use case of video surveillance access control with face detection and recognition we found Hyperledger Fabric more appropriate than any other private permissioned Blockchain. 
+Hyperledger Fabric is an open source permissioned Blockchain developed by Linux Foundation which has received contributions from IBM and some other companies. With its modular and configurable architecture it has become a standard for enterprise Blockchain. 
 
 
 \section{Hyperledger Fabric Architecture}
-Hyperledger Fabric differs from other blockchains as it provides solutions to the problems in the business world. So instead of having unknown participants, it has a membership service provider that only allows participants which are permitted. Hyperledger Fabric offers a pluggable consensus mechanism instead of using Proof of Work while giving a lot of freedom to chose. In other words the platform is pretty flexible you will get to know more once we get to each component. Figure~\ref{fig:fabric_arch} depicts Hyperledger Fabric architecture with its key features and components which we define:
+Hyperledger Fabric differs from other Blockchains as it provides solutions to the problems in the business world. So instead of having unknown participants, it has a membership service provider that only allows participants which are permitted. Hyperledger Fabric offers a pluggable consensus mechanism instead of using Proof of Work while giving a lot of freedom to chose. In other words the platform is very  flexible which will be reflected once we look in more detail at each component. Figure~\ref{fig:fabric_arch} depicts Hyperledger Fabric architecture with its key features and components which we define:
 \begin{itemize}
-    \item Roles in Hyperledger Fabric
-     \item Membership Service Provider
-     \item Certificate Authority
-    \item Consensus Mechanism
-    \item Chaincode / Smart Contracts 
-    \item Channels
-    \item Ledger and State Database
+    \item Roles in Hyperledger Fabric;
+     \item Membership Service Provider;
+     \item Certificate Authority;
+    \item Consensus Mechanism;
+    \item Chaincode / Smart Contracts ;
+    \item Channels;
+    \item Ledger and State Database;
 \end{itemize}
 \begin{figure}[!htb]
     \centering
@@ -444,15 +443,15 @@ Hyperledger Fabric differs from other blockchains as it provides solutions to th
 
 \subsection{Roles within Hyperledger Fabric Network}
 There are a number of roles in Hyperledger Fabric but first of all the most important are the members of the organisations who operate the network and together form a consortium.
-Each of the nodes that participate in the Fabric blockchain holds an identity issued by the Membership Service Provided (MSP) with each being responsible for one of these roles:
+Each of the nodes that participate in the HLF hold an identity issued by the Membership Service Provided (MSP) with each being responsible for one of these roles:
 \begin{enumerate}
-  \item Clients or Participants. They are applications or devices that issue transactions in the network on behalf of the user. Every client is identified by the MSP and they hold certificates issued from the Certificate Authority which allows them to sign transactions.
+  \item Clients or Participants: They are applications or devices that issue transactions in the network on behalf of the user. Every client is identified by the MSP and they hold certificates issued from the Certificate Authority which allows them to sign transactions.
   \item Peers. They are the fundamental element of the network because they operate the blockchain and execute transactions to the append only data structure. 
   %The blockchain ledger and smart contracts encapsulate the shared process of inserting information in the network. 
   
-  \item Ordering Service. Ordering peers receive a transaction from the endorser it checks if the client is authorized by the MSP. If that's the case it orders the transactions in a block and delivers the blocks in atomic or total order broadcast. 
+  \item Ordering Service: Ordering peers receive a transaction from the endorser it checks if the client is authorized by the MSP. If that is the case it orders the transactions in a block and delivers the blocks in atomic or total order broadcast. 
   
-  \item Administrators. They stand one level above a member. They are responsible for adding or removing members from the blockchain. 
+  \item Administrators: They stand one level above a member. They are responsible for adding or removing members from the Blockchain. 
   
 \end{enumerate}
 
@@ -460,45 +459,44 @@ Each of the nodes that participate in the Fabric blockchain holds an identity is
 
 
 \begin{enumerate}
-\item Endorsing Peer. In Hyperledger Fabric it is not necessary that all peers execute the transactions but only a subset of them which are named as endorsing peers. Every chaincode holds an endorsement policy which defines which peers are allowed to execute the chaincode. The endorsement policy holds from the moment the chaincode is installed on the endorsing peers. Every chaincode can specify its own endorsement policy. Each and every peer that holds that particular chaincode has to do the endorsement and each organisation must have at least one endorser peer. The request for adding transactions comes from the client and the endorser ought to assure the client is valid, if the client has a true Certificate Authority and digital signature. 
+\item Endorsing Peer: In Hyperledger Fabric it is not necessary that all peers execute the transactions but only a subset of them which are named as endorsing peers. Every chaincode holds an endorsement policy which defines which peers are allowed to execute the chaincode. The endorsement policy holds from the moment the chaincode is installed on the endorsing peers. Every chaincode can specify its own endorsement policy. Each and every peer that holds that particular chaincode has to do the endorsement and each organisation must have at least one endorser peer. The request for adding transactions comes from the client and the endorser ought to assure the client is valid, if the client has a true Certificate Authority and digital signature. 
 
 
-\item Ordering Peer. 
-After an orderer peer receives a transaction from the client which is also signed by the endorser it checks if the client is authorized by the MSP. If that's the case it orders the transactions in a block and delivers the block in atomic or total order broadcast to all the peers. The task basically is to achieve consensus on the order of transactions and deliver the decision to the committer peer. 
-\item Committer Peer. The committer assumes the transaction has been validated by the order and its job is to transmit the valid transactions to other peers for inclusion in the ledger. 
+\item Ordering Peer: After an orderer peer receives a transaction from the client which is also signed by the endorser it checks if the client is authorized by the MSP. If that's the case it orders the transactions in a block and delivers the block in atomic or total order broadcast to all the peers. The task basically is to achieve consensus on the order of transactions and deliver the decision to the committer peer. 
+\item Committer Peer: The committer assumes the transaction has been validated by the order and its job is to transmit the valid transactions to other peers for inclusion in the ledger. 
 \end{enumerate}
 
 
 
 \subsection{Membership Service Provider}
-Unlike public blockchain in private blockchain participants in the network are identified. Hence in Hyperledger Fabric 
-MSP manages identities, each  and every entity has to obtain an enrollment certificate from a Certificate Authority which is part of MSP. Since Fabric is permissioned, every interaction or messages that occur between the nodes are authenticated with digital signature. MSP is responsible for issuing and managing credentials in order to authenticate and authorise every node in the network. Typically there is one MSP per organisation but it is still possible to have one MSP to serve multiple organisations. In addition MSP also defines roles, access rights and the rules for each type of peer. MSP makes use of Certificate Authority which makes it easier to verify and revoke certificates when need. In other words MSP allows to find out which identity is to be trusted and which ones to be rejected. 
+Unlike public Blockchain in private Blockchain participants in the network are identified. Hence in Hyperledger Fabric 
+MSP manages identities, each  and every entity has to obtain an enrollment certificate from a Certificate Authority which is part of MSP. Since Fabric is permissioned, every interaction or messages that occurs between the nodes are authenticated with digital signature. MSP is responsible for issuing and managing credentials in order to authenticate and authorise every node in the network. Typically there is one MSP per organisation but it is still possible to have one MSP to serve multiple organisations. In addition MSP also defines roles, access rights and the rules for each type of peer. MSP makes use of Certificate Authority which makes it easier to verify and revoke certificates when needed. In other words MSP allows to find out which identity is to be trusted and which ones to be rejected. 
 
 \subsection{Certificate Authority}
 
 Hyperledger Fabric uses Public Key Infrastructure (PKI) for the digital identity. Each digital identity is provided with X. 509 digital certificate in order to verify that a public key belongs to the entity who owns it. The role of public private key in Hyperledger Fabric is mainly to sign transactions. When an application user initiates a transaction they first sign the transactions with their private key issued by their organisation and it also attaches the public key and the signature. 
 
-By default Hyperledger Fabric provides a Fabric-ca which is a certificate authority for handling digital identities reflected in Figure~\ref{fig:fabric_arch}. Fabric-ca is in charge of registering identities, issuing of enrollment certificates and renewing or revoking certificates. However Hyperledger Fabric is not bound to Fabric-ca for managing digital identities but instead it allows for external CA also. This is another proof which shows the modular nature of Hyperledger Fabric. 
+By default Hyperledger Fabric provides a Fabric-ca docker container which is a certificate authority for handling digital identities reflected in Figure~\ref{fig:fabric_arch}. Fabric-ca is in charge of registering identities, issuing of enrollment certificates and renewing or revoking certificates. However Hyperledger Fabric is not bound to Fabric-ca for managing digital identities but instead it allows for external CA also. This is another proof which shows the modular nature of Hyperledger Fabric. 
 
 \subsection{Consensus Mechanism}
-Public blockchains like Ethereum are permission-less which means the peers do not have to trust each other. In order to ensure trust there is a need for consensus algorithm such as Proof of Work. However with permissioned blockchains the entities are all known and the consensus takes a different approach.  Eventhough the participants may know each other but still they are not fully trusted. 
+Public Blockchains like Ethereum are permission-less which means the peers do not have to trust each other. In order to ensure trust there is a need for consensus algorithm such as Proof of Work. However with permissioned Blockchains the entities are all known and the consensus takes a different approach.  Eventhough the participants may know each other but still they are not fully trusted. 
 
-In HLF every client that submits transactions belongs to an organisation which means that the client represent the organisation itself. Therefore in order to ensure the organisation is not doing any mischief there is a need for an agreement or consensus.   
-In HLF there is a need to compromise on the ordering of transactions in the block and most importantly validating those transactions in the block that will eventually be inserted in the ledger. Consensus in HLF is broad and covers the entire transaction flow, starting from proposing a transaction till committing it to the ledger. But we need to keep in mind that transactions are executed before the ordering. For executing transactions there is no need for a consensus algorithm its the ordering peers that do it by holding to the rules in the endorsement policies applied. Consensus in Fabric ensures the correctness of all transactions in the proposed block and agreement on the ordering of transactions. This brings to the properties which are needed to guarantee agreement between nodes: safety and liveliness. "Safety" means a node receives the sequence of transactions to be inserted in the ledger, the same sequence and state occurs on all other nodes. "Liveliness" means even though some of the nodes may be faulty, the non faulty nodes should still be able to receive the committed transactions. 
+In HLF every client that submits transactions belongs to an organisation which means that the client represents the organisation itself. Therefore in order to ensure the organisation is not doing any mischief there is a need for an agreement or consensus.   
+In HLF there is a need to compromise on the ordering of transactions in the block and most importantly validating those transactions in the block that will eventually be inserted in the ledger. Consensus in HLF is broad and covers the entire transaction flow, starting from proposing a transaction till committing it to the ledger. But we need to keep in mind that transactions are executed before the ordering. For executing transactions there is no need for a consensus algorithm, it is the ordering peers that do it by holding to the rules in the endorsement policies applied. Consensus in Fabric ensures the correctness of all transactions in the proposed block and agreement on the ordering of transactions. This brings to the properties which are needed to guarantee agreement between nodes: safety and liveliness. "Safety" means a node receives the sequence of transactions to be inserted in the ledger, the same sequence and state occurs on all other nodes. "Liveliness" means even though some of the nodes may be faulty, the non faulty nodes should still be able to receive the committed transactions. 
 
-The ordering of transactions is assigned to a pluggable algorithm for consensus which is loosely coupled to the peers that execute and maintain the ledger. This allows the organisations running the blockchain to chose the consensus algorithm that best fits their need and use case without limiting their own creativity. The component where the consensus is applied is the ordering service. 
+The ordering of transactions is assigned to a pluggable algorithm for consensus which is loosely coupled to the peers that execute and maintain the ledger. This allows the organisations running the Blockchain to chose the consensus algorithm that best fits their need and use case without limiting their own creativity. The component where the consensus is applied is the ordering service. 
 
 \subsubsection{Consensus Algorithms Used in Hyperledger Fabric}
 
-With its pluggable architecture HLF allows developers to configure the development with the consensus algorithm which best suits the organisations needs. Currently the supported options are: 
+With its pluggable architecture HLF allows developers to configure the development with the consensus algorithm which best suits the organisations needs. Currently the supported algorithms\cite{orderingservice} are: 
 
 \begin{itemize}
-  \item \textbf{Solo.}  As the name says solo, the ordering service is performed by only one peer. Clearly this is not the best option and it is neither decentralized  nor fault tolerant. But since solo is used only for development purposes there is the advantage of letting the developers focus on other matters while developing the chaincode and application and it is not used for production. 
- \item \textbf{Kafka.} The Apache Kafka provides a crash fault tolerant (CFT) but it is not Byzantine Fault Tolerant (BFT). Apache Kafka is an event streaming platform based on publisher-subscribe messaging which comes with high throughput and low latency. It follows a leader-follower model which means there is a leader peer and follower peers. The leader orders transactions and propagate them to all other peers and if the leader goes down then re-election takes place for choosing the leader. 
- \item \textbf{Raft.} Raft is one of the latest mechanism recommend from Hyperledger Fabric which is there to improve the Kafka mechanism towards a (BFT) ordering service. Raft and Kafka provide the identical approach to the ordering service component. Both of them follow the leader and follower design and are crash fault tolerant. However Raft overtakes Kafka by a number of major advantages worth considering. First of all Raft is much easier to setup considering that deploying Kafka requires additional baggage such as Zookeeper. Secondly, Kafka is not scalable and it runs in a tight group of peers. There can be different organisations running Kafka but yet the nodes running Kafka all go to the same cluster which is managed by a single organisation. With Raft it is possible to spread the nodes in different data centers, so if one data center becomes unavailable the other one is there to recover and continue the operation.
+  \item \textbf{Solo};  As the name says solo, the ordering service is performed by only one peer. Clearly this is not the best option and it is neither decentralized  nor fault tolerant. But since solo is used only for development purposes there is the advantage of letting the developers focus on other matters while developing the chaincode and application and it is not used for production. 
+ \item \textbf{Kafka}: The Apache Kafka provides a crash fault tolerant (CFT) but it is not Byzantine Fault Tolerant (BFT). Apache Kafka is an event streaming platform based on publisher-subscribe messaging which comes with high throughput and low latency. It follows a leader-follower model which means there is a leader peer and follower peers. The leader orders transactions and propagates them to all other peers and if the leader goes down then re-election takes place for choosing the leader. 
+ \item \textbf{Raft}: It is one of the latest mechanism recommend from Hyperledger Fabric which is there to improve the Kafka mechanism towards a (BFT) ordering service. Raft and Kafka provide the identical approach to the ordering service component. Both of them follow the leader and follower design and are crash fault tolerant. However Raft overtakes Kafka by a number of major advantages worth considering. In Raft is much easier to setup considering that deploying Kafka requires additional baggage such as Zookeeper. Secondly, Kafka is not scalable and it runs in a tight group of peers. There can be different organisations running Kafka but yet the nodes running Kafka all go to the same cluster which is managed by a single organisation. With Raft it is possible to spread the nodes in different data centers, so if one data center becomes unavailable the other one is there to recover and continue the operation.
 
  
- \item \textbf{Simplified Byzantine Fault Tolerance (SBFT).} This is a new approach which is planned to be implemented by Hyperledger Fabric. SBFT is both crash fault tolerant and byzantine fault tolerant. With this approach the nodes can reach agreement eventhough there are faulty or malicious nodes. 
+ \item \textbf{Simplified Byzantine Fault Tolerance (SBFT)}: This is a new approach which is planned to be implemented by Hyperledger Fabric. SBFT is both crash fault tolerant and byzantine fault tolerant. With this approach the nodes can reach agreement eventhough there are faulty or malicious nodes. 
 \end{itemize}
 
 \subsection{Chaincode or Smart contracts}
@@ -518,26 +516,26 @@ Since agreement takes place upfront and are explicit there is no need for a dete
 
 \subsection{Channels}
 
-Channels allow the creation of sub networks within the same Fabric network. This is a huge advantage for organisations that are competitors and want to make their transactions invisible to their competitors. Channels allows the participating organisations to create and maintain their own private ledger. The ledger is not visible to any other organisations except the members participating in that channel. 
-Each organisation would normally want to have their own peers in the blockchain. Suppose there are three organisations A, B and C. All of them are connected with one single Channel and maintain one single ledger. If A wants to buy a specific product from B, A does not want to share the details with C. Therefore A and B would need a new channel having their own peers. Since C is not part of channel it is not able to see their ledger. Each channels can have one ledger only. 
+Channels allow the creation of sub networks within the same Fabric network. This is a huge advantage for organisations that are competitors and want to make their transactions invisible to their competitors. Channels allow the participating organisations to create and maintain their own private ledger. The ledger is not visible to any other organisations except to the members participating in that channel. 
+Each organisation would normally want to have their own peers in the Blockchain. Suppose there are three organisations A, B and C. All of them are connected with one single Channel and maintain one single ledger. If A wants to buy a specific product from B, A does not want to share the details with C. Therefore A and B would need a new channel having their own peers. Since C is not part of channel it is not able to see their ledger. Each channels can have one ledger only. 
 Technically a channel is a subnet between two or more members.  
 
 An endorser peer may participate in more than one channel therefore it allows them to hold two ledgers or more at the same time. 
 
-A few features that hold: 
+A few features that hold true: 
 \begin{itemize}
-  \item Every channel may have only one ledger.
-  \item A channel may have one or multiply chincodes.
-  \item Every chaincode has its own endorser peers and endorsement policies.
-  \item A chaincode must be installed on peers that are members of a channel where the chaincode will be deployed. 
+  \item Every channel may have only one ledger;
+  \item A channel may have one or multiply chincodes;
+  \item Every chaincode has its own endorser peers and endorsement policies;
+  \item A chaincode must be installed on peers that are members of a channel where the chaincode will be deployed; 
   \end{itemize}
 
 
 \subsection{Ledger and State Database}
 
-Like any other blockchain platforms also in Hyperledger Fabric the ledger keeps track of all important information by storing the history of all transactions. While the state of the assets may change, the history behind it is immutable. In Hyperledger Fabric the ledger contains two distinct parts, the world state and the blockchain itself. 
+Like any other Blockchain platforms also in HLF the ledger keeps track of all important information by storing the history of all transactions. While the state of the assets may change, the history behind it is immutable. In HLF the ledger contains two distinct parts, the world state and the ledger itself. 
 The ledger is kept by all peers except a subset of orderers. 
-Figure~\ref{fig:ledgerdiagram} shows the structure of blockchain with the blocks and the transactions in each block. Each blockchain is structured as back-linked list of blocks which includes a hash of the prior block. More specifically the Block header holds the hash of the previous block as well as the hash of its own transactions. There are additional information stored in the block which can be seen in  Figure~\ref{fig:ledgerdiagram}. The transactions are stored in Block Data and the number of transactions is not necessarily the same. Each orderer assembles the transactions coming from the consensus algorithm. The conditions for creating and closing the block is based either on the maximum number of transactions allowed per block or when a timeout period has elapsed which is counted from the time the first transaction has been endorsed. 
+Figure~\ref{fig:ledgerdiagram} shows the structure of Blockchain with the blocks and the transactions in each block. Each Blockchain is structured as back-linked list of blocks which includes a hash of the prior block. More specifically the Block header holds the hash of the previous block as well as the hash of its own transactions. There are additional information stored in the block which can be seen in  Figure~\ref{fig:ledgerdiagram}. The transactions are stored in Block Data and the number of transactions is not necessarily the same. The job of the ordering peers is to assemble the transactions coming from the consensus algorithm. The conditions for creating and closing the block is based either on the maximum number of transactions allowed per block or when a timeout period has elapsed which is counted from the time the first transaction has been endorsed. 
 
 \begin{figure}[!htb]
     \centering
@@ -549,6 +547,6 @@ Figure~\ref{fig:ledgerdiagram} shows the structure of blockchain with the blocks
 Blockchain data or asset in Hyperledger Fabric is represented as a collection of key value pairs. Assets can be in JSON form or binary. The state changes are recorded as a result of transaction execution in a set of key-value writes. 
 
 
-In addition to the blockchain data there is a world state which represents the current state of the ledger. Word state similarly as the ledger holds a key value pair in a database which can be either CouchDB or LevelDB. With the world state the program can query the current most updated value of a state (key) without having to traverse the entire transaction log from the blockchain ledger. The world state is updated upon transaction execution and follows the consensus algorithm of the network. The procedure is as follows, after the transaction is signed by endorser, executed and validated by orderer it then eventually results in the update of the world state. If the transaction is considered invalid and has not passed the lifecycle it does not update the world state. 
+In addition to the Blockchain data there is a world state which represents the current state of the ledger. Word state similarly as the ledger holds a key value pair in a database which can be either CouchDB or LevelDB. With the world state the program can query the current most updated value of a state (key) without having to traverse the entire transaction log from the Blockchain ledger. The world state is updated upon transaction execution and follows the consensus algorithm of the network. The procedure is as follows, after the transaction is signed by endorser, executed and validated by orderer it then eventually results in the update of the world state. If the transaction is considered invalid and has not passed the lifecycle it does not update the world state. 
 
-Some peers may not join the network from the beginning so for those peers the world state is empty. However since every new transaction represent a valid change in the world state then the world state can be generated easily and within some time it will be able to fully hold the latest assets' state.  
+Some peers may not join the network from the beginning so for those peers the world state is empty. However since every new transaction represents a valid change in the world state then the world state can be generated easily and within some time it will be able to fully hold the latest assets' state.  
